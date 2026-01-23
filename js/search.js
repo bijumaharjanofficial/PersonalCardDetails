@@ -305,6 +305,11 @@ class SearchPage {
       this.openCardModal(card);
     });
 
+    // Add double-click for full page
+    cardElement.addEventListener("dblclick", () => {
+      window.location.href = `card.html?id=${card.id}`;
+    });
+
     return cardElement;
   }
 

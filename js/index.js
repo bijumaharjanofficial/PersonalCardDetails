@@ -1,4 +1,4 @@
-// Landing page functionality
+// Landing page functionality - FIXED VERSION
 class LandingPage {
   constructor() {
     this.playPauseBtn = document.getElementById("playPauseBtn");
@@ -15,9 +15,6 @@ class LandingPage {
   init() {
     console.log("LandingPage initializing...");
 
-    // Initialize audio
-    this.initAudio();
-
     // Initialize particles
     this.initParticles();
 
@@ -30,50 +27,7 @@ class LandingPage {
     // Start ambient music with delay
     setTimeout(() => {
       this.startAmbientMusic();
-    }, 1500);
-  }
-
-  initAudio() {
-    console.log("Initializing audio controls...");
-
-    // Set up audio controls
-    if (this.playPauseBtn) {
-      this.playPauseBtn.addEventListener("click", () => this.togglePlayPause());
-    }
-
-    if (this.nextTrackBtn) {
-      this.nextTrackBtn.addEventListener("click", () => this.nextTrack());
-    }
-
-    if (this.muteBtn) {
-      this.muteBtn.addEventListener("click", () => this.toggleMute());
-    }
-
-    if (this.volumeSlider) {
-      this.volumeSlider.addEventListener("input", (e) =>
-        this.changeVolume(e.target.value),
-      );
-
-      // Set initial volume from audio system
-      this.volumeSlider.value = Math.round(audioSystem.volume * 100);
-    }
-
-    // Update UI based on audio state
-    audioSystem.addEventListener("trackchange", (data) => {
-      console.log("Track changed:", data.track);
-      this.updateTrackInfo(data.track);
-    });
-    audioSystem.addEventListener("mutechange", (data) =>
-      this.updateMuteButton(data.muted),
-    );
-    audioSystem.addEventListener("volumechange", (data) =>
-      this.updateVolumeSlider(data.volume),
-    );
-
-    // Update initial UI state
-    this.updatePlayPauseButton();
-    this.updateMuteButton(audioSystem.isMuted);
-    this.updateVolumeSlider(audioSystem.volume);
+    }, 2000);
   }
 
   initParticles() {
@@ -118,13 +72,15 @@ class LandingPage {
       });
 
       previewCard.addEventListener("mouseleave", () => {
-        previewCard.style.transform =
-          "perspective(1000px) rotateX(0) rotateY(0) translateZ(0)";
+        previewCard.style.transform = "perspective(1000px) rotateX(0) rotateY(0) translateZ(0)";
       });
     }
   }
 
   initEventListeners() {
+    // Audio controls
+    this.initAudioControls();
+
     // Update track info periodically
     setInterval(() => this.updateCurrentTime(), 1000);
 
@@ -140,39 +96,74 @@ class LandingPage {
     });
   }
 
+  initAudioControls() {
+    console.log("Initializing audio controls...");
+
+    // Set up audio controls
+    if (this.playPauseBtn) {
+      this.playPauseBtn.addEventListener("click", () => this.togglePlayPause());
+    }
+
+    if (this.nextTrackBtn) {
+      this.nextTrackBtn.addEventListener("click", () => this.nextTrack());
+    }
+
+    if (this.muteBtn) {
+      this.muteBtn.addEventListener("click", () => this.toggleMute());
+    }
+
+    if (this.volumeSlider) {
+      this.volumeSlider.addEventListener("input", (e) => this.changeVolume(e.target.value));
+      
+      // Set initial volume from audio system
+      this.volumeSlider.value = Math.round(audioSystem.volume * 100);
+    }
+
+    // Update UI based on audio state
+    audioSystem.addEventListener("trackchange", (data) => {
+      console.log("Track changed:", data.track);
+      this.updateTrackInfo(data.track);
+    });
+    
+    audioSystem.addEventListener("mutechange", (data) => this.updateMuteButton(data.muted));
+    audioSystem.addEventListener("volumechange", (data) => this.updateVolumeSlider(data.volume));
+    audioSystem.addEventListener("pause", () => this.updatePlayPauseButton());
+    audioSystem.addEventListener("resume", () => this.updatePlayPauseButton());
+
+    // Update initial UI state
+    this.updatePlayPauseButton();
+    this.updateMuteButton(audioSystem.isMuted);
+    this.updateVolumeSlider(audioSystem.volume);
+  }
+
   startAmbientMusic() {
     console.log("Starting ambient music...");
-    console.log("Audio system status:", {
-      userInteracted: audioSystem.userInteracted,
-      isPlaying: audioSystem.isPlaying,
-      currentTrack: audioSystem.currentTrack,
-    });
-
-    // Start playing random tracks if user has interacted
+    
+    // Check audio status
+    const status = utils.checkAudioStatus();
+    console.log("Audio status on start:", status);
+    
+    // If user has already interacted in this session or saved interaction, start music
     if (audioSystem.userInteracted && !audioSystem.isPlaying) {
       console.log("User has interacted, starting music...");
       setTimeout(() => {
         audioSystem.playRandomTrack();
-      }, 500);
+      }, 1000);
     } else if (!audioSystem.userInteracted) {
       console.log("Waiting for user interaction...");
-      // Setup gentle start
-      setTimeout(() => {
-        audioSystem.prepareForAutoPlay();
-      }, 1000);
+      // Setup for mobile if needed
+      if (audioSystem.isMobile) {
+        setTimeout(() => {
+          if (!audioSystem.userInteracted) {
+            audioSystem.setupMobileInteraction();
+          }
+        }, 1500);
+      }
     }
   }
 
   togglePlayPause() {
     console.log("Toggle play/pause clicked");
-
-    // Ensure audio interaction
-    if (!audioSystem.userInteracted) {
-      console.log("First interaction detected via play button");
-      audioSystem.userInteracted = true;
-      localStorage.setItem("audioInteraction", "true");
-      audioSystem.resumeAudioContext();
-    }
 
     if (audioSystem.isPlaying) {
       audioSystem.pause();
@@ -185,14 +176,6 @@ class LandingPage {
 
   nextTrack() {
     console.log("Next track clicked");
-
-    // Ensure audio interaction
-    if (!audioSystem.userInteracted) {
-      audioSystem.userInteracted = true;
-      localStorage.setItem("audioInteraction", "true");
-      audioSystem.resumeAudioContext();
-    }
-
     audioSystem.nextTrack();
   }
 

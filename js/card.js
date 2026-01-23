@@ -14,7 +14,6 @@ class CardPage {
     this.cardContent = document.getElementById("cardContent");
     this.cardGlow = document.getElementById("cardGlow");
     this.themeToggleBtn = document.getElementById("themeToggle");
-    this.cardMusicElement = document.getElementById("cardMusic");
     this.cardPlayPauseBtn = document.getElementById("cardPlayPause");
     this.cardVolumeSlider = document.getElementById("cardVolume");
     this.cardTrackInfo = document.getElementById("cardTrackInfo");
@@ -27,6 +26,11 @@ class CardPage {
     this.galleryNextBtn = document.getElementById("galleryNext");
     this.galleryCurrent = document.getElementById("galleryCurrent");
     this.galleryTotal = document.getElementById("galleryTotal");
+
+    // Audio state
+    this.cardMusicUrl = null;
+    this.isCardMusicPlaying = false;
+    this.cardMusicLoop = true;
 
     // Bind methods for event listeners
     this.handleTouchStart = this.handleTouchStart.bind(this);
@@ -42,11 +46,6 @@ class CardPage {
   }
 
   init() {
-    // Initialize theme toggle
-    // if (this.themeToggleBtn) {
-    //     this.themeToggleBtn.addEventListener("click", () => themeSystem.toggleTheme());
-    // }
-
     // Initialize audio controls
     this.initAudioControls();
 
@@ -65,12 +64,6 @@ class CardPage {
       this.cardPlayPauseBtn.addEventListener("click", (e) => {
         e.stopPropagation();
         this.toggleCardMusic();
-
-        // Trigger audio interaction
-        if (!audioSystem.userInteracted) {
-          audioSystem.userInteracted = true;
-          audioSystem.resumeAudioContext();
-        }
       });
     }
 
@@ -79,6 +72,68 @@ class CardPage {
         const volume = parseInt(e.target.value) / 100;
         audioSystem.setVolume(volume);
       });
+      
+      // Set initial volume from audioSystem
+      this.cardVolumeSlider.value = Math.round(audioSystem.volume * 100);
+    }
+    
+    // Update UI based on audioSystem state
+    audioSystem.addEventListener("pause", () => this.updatePlayPauseButton());
+    audioSystem.addEventListener("resume", () => this.updatePlayPauseButton());
+    audioSystem.addEventListener("trackchange", (data) => {
+      this.updateTrackInfo(data.track);
+    });
+    audioSystem.addEventListener("volumechange", (data) => {
+      this.updateVolumeSlider(data.volume);
+    });
+  }
+
+  updatePlayPauseButton() {
+    if (!this.cardPlayPauseBtn) return;
+    
+    const icon = this.cardPlayPauseBtn.querySelector("i");
+    if (icon) {
+      icon.className = audioSystem.isPlaying ? "fas fa-pause" : "fas fa-play";
+    }
+  }
+  
+  updateVolumeSlider(volume) {
+    if (!this.cardVolumeSlider) return;
+    this.cardVolumeSlider.value = Math.round(volume * 100);
+  }
+  
+  updateTrackInfo(trackUrl) {
+    if (!this.cardTrackInfo || !trackUrl) return;
+    
+    if (trackUrl === this.cardMusicUrl) {
+      const card = this.currentCard;
+      const songName = card?.favorites?.songName;
+      let displayName = songName;
+      
+      if (!displayName) {
+        // Extract name from filename
+        displayName = trackUrl
+          .split("/")
+          .pop()
+          .replace(".mp3", "")
+          .replace("-theme", " Theme")
+          .replace(/_/g, " ")
+          .replace(/^\d+/, "")
+          .trim();
+
+        // Capitalize first letter of each word
+        displayName = displayName.replace(/\b\w/g, (l) => l.toUpperCase());
+      }
+      
+      this.cardTrackInfo.textContent = `Playing: ${displayName}`;
+    } else {
+      // Ambient track
+      const trackName = trackUrl
+        .split("/")
+        .pop()
+        .replace(".mp3", "")
+        .replace("music", "Ambient Track ");
+      this.cardTrackInfo.textContent = trackName;
     }
   }
 
@@ -116,7 +171,7 @@ class CardPage {
       this.cardContent.classList.add("hidden");
     }
 
-    // Stop any card-specific music
+    // Stop card-specific music and resume ambient
     this.stopCardMusic();
   }
 
@@ -916,7 +971,7 @@ class CardPage {
 
   handleCardMusic(card) {
     const songUrl = card.favorites?.song;
-    const songName = card.favorites?.songName;
+    this.cardMusicUrl = songUrl;
 
     if (!songUrl) {
       // No card-specific song
@@ -924,30 +979,21 @@ class CardPage {
       if (this.cardPlayPauseBtn) {
         this.cardPlayPauseBtn.disabled = true;
       }
-      return;
-    }
-
-    // Stop ambient music and play card-specific song
-    audioSystem.stop();
-
-    // Set up card music
-    this.cardMusicElement.src = songUrl;
-    this.cardMusicElement.volume = 0;
-
-    // Handle mobile interaction
-    if (!audioSystem.userInteracted) {
-      // Show mobile prompt if not already interacted
-      if (!document.querySelector(".mobile-audio-overlay")) {
-        audioSystem.setupMobileInteraction();
+      
+      // If we're on card page with no song, play ambient music
+      if (!audioSystem.isPlaying) {
+        audioSystem.playRandomTrack();
       }
       return;
     }
 
-    // Fade in card music if user has interacted
-    this.fadeInCardMusic();
+    // Enable play/pause button
+    if (this.cardPlayPauseBtn) {
+      this.cardPlayPauseBtn.disabled = false;
+    }
 
-    // Update track info
-    let displayName = songName;
+    // Set track info
+    let displayName = card.favorites?.songName;
     if (!displayName) {
       // Extract name from filename
       displayName = songUrl
@@ -963,72 +1009,68 @@ class CardPage {
       displayName = displayName.replace(/\b\w/g, (l) => l.toUpperCase());
     }
 
-    this.cardTrackInfo.textContent = `Playing: ${displayName}`;
-
-    if (this.cardPlayPauseBtn) {
-      this.cardPlayPauseBtn.disabled = false;
+    this.cardTrackInfo.textContent = `Ready: ${displayName}`;
+    
+    // If user has already interacted, start playing the card music
+    if (audioSystem.userInteracted) {
+      this.playCardMusic();
+    } else {
+      // Wait for user interaction
+      this.cardTrackInfo.textContent = "Tap to enable audio";
     }
   }
 
-  async fadeInCardMusic() {
+  async playCardMusic() {
+    if (!this.cardMusicUrl) return;
+    
     try {
-      await this.cardMusicElement.play();
-
-      // Fade in volume
-      let volume = 0;
-      const fadeInterval = setInterval(() => {
-        volume += 0.05;
-        this.cardMusicElement.volume = Math.min(volume, 0.7);
-
-        if (volume >= 0.7) {
-          clearInterval(fadeInterval);
-        }
-      }, 100);
+      await audioSystem.playTrack(this.cardMusicUrl, true);
+      this.updatePlayPauseButton();
+      
+      // Set loop for card music
+      if (audioSystem.audioElement) {
+        audioSystem.audioElement.loop = this.cardMusicLoop;
+      }
     } catch (error) {
       console.error("Error playing card music:", error);
-    }
-  }
-
-  async fadeOutCardMusic() {
-    return new Promise((resolve) => {
-      let volume = this.cardMusicElement.volume;
-      const fadeInterval = setInterval(() => {
-        volume -= 0.05;
-        this.cardMusicElement.volume = Math.max(volume, 0);
-
-        if (volume <= 0) {
-          clearInterval(fadeInterval);
-          this.cardMusicElement.pause();
-          resolve();
-        }
-      }, 100);
-    });
-  }
-
-  toggleCardMusic() {
-    if (this.cardMusicElement.paused) {
-      this.cardMusicElement.play();
-      if (this.cardPlayPauseBtn) {
-        const icon = this.cardPlayPauseBtn.querySelector("i");
-        if (icon) {
-          icon.className = "fas fa-pause";
-        }
-      }
-    } else {
-      this.cardMusicElement.pause();
-      if (this.cardPlayPauseBtn) {
-        const icon = this.cardPlayPauseBtn.querySelector("i");
-        if (icon) {
-          icon.className = "fas fa-play";
-        }
-      }
+      this.cardTrackInfo.textContent = "Error loading song";
     }
   }
 
   stopCardMusic() {
-    if (!this.cardMusicElement.paused) {
-      this.fadeOutCardMusic();
+    // Stop current playback and switch to ambient
+    if (audioSystem.isPlaying && audioSystem.currentTrack === this.cardMusicUrl) {
+      audioSystem.stop();
+      audioSystem.playRandomTrack();
     }
+    this.cardMusicUrl = null;
+  }
+
+  toggleCardMusic() {
+    if (!audioSystem.userInteracted) {
+      // Trigger audio interaction
+      audioSystem.userInteracted = true;
+      localStorage.setItem("audioInteraction", "true");
+      audioSystem.resumeAudioContext();
+      
+      // Start playing card music
+      this.playCardMusic();
+      return;
+    }
+
+    if (audioSystem.isPlaying) {
+      audioSystem.pause();
+    } else {
+      if (this.cardMusicUrl) {
+        // Resume card music
+        audioSystem.resume();
+      } else {
+        // Play ambient music
+        audioSystem.playRandomTrack();
+      }
+    }
+    
+    this.updatePlayPauseButton();
   }
 
   updateFooterInfo(card) {

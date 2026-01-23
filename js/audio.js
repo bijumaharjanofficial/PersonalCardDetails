@@ -1,4 +1,4 @@
-// Audio management system
+// Audio management system - FIXED VERSION
 class AudioSystem {
   constructor() {
     this.currentTrack = null;
@@ -19,6 +19,7 @@ class AudioSystem {
       );
     this.userInteracted = false;
     this.autoStartAttempted = false;
+    this.interactionListenersAdded = false;
 
     // Get audio element
     this.audioElement =
@@ -31,7 +32,6 @@ class AudioSystem {
     this.audioElement.loop = false;
     this.audioElement.preload = "auto";
 
-    // Store this for later initialization
     console.log("AudioSystem created. Mobile:", this.isMobile);
   }
 
@@ -66,15 +66,18 @@ class AudioSystem {
       }
     }
 
-    // Event listeners
+    // Event listeners for audio element
     this.audioElement.addEventListener("ended", () => this.onTrackEnd());
     this.audioElement.addEventListener("error", (e) => this.onAudioError(e));
     this.audioElement.addEventListener("canplaythrough", () => {
       console.log("Audio can play through");
     });
 
-    // Setup interaction listeners
-    this.setupInteractionListeners();
+    // Setup interaction listeners - ONCE only
+    if (!this.interactionListenersAdded) {
+      this.setupInteractionListeners();
+      this.interactionListenersAdded = true;
+    }
 
     // Load saved volume
     this.loadVolume();
@@ -91,22 +94,27 @@ class AudioSystem {
   }
 
   setupInteractionListeners() {
+    console.log("Setting up interaction listeners...");
+
     const resumeOnInteraction = (event) => {
       console.log("User interaction detected:", event.type);
+
       if (!this.userInteracted) {
         this.userInteracted = true;
         localStorage.setItem("audioInteraction", "true");
 
+        // Resume audio context if suspended
         this.resumeAudioContext();
 
         // Start playing if not already
-        if (!this.isPlaying && !this.currentTrack) {
-          setTimeout(() => {
+        setTimeout(() => {
+          if (!this.isPlaying && !this.currentTrack) {
+            console.log("Starting music after interaction...");
             this.playRandomTrack();
-          }, 500);
-        }
+          }
+        }, 300);
 
-        // Remove overlay if it exists
+        // Remove mobile overlay if it exists
         const overlay = document.querySelector(".mobile-audio-overlay");
         if (overlay) {
           overlay.classList.add("hidden");
@@ -119,38 +127,30 @@ class AudioSystem {
       }
     };
 
-    // Multiple interaction types - DON'T use { once: true }
-    document.addEventListener("click", resumeOnInteraction);
-    document.addEventListener("keydown", resumeOnInteraction);
-    document.addEventListener("touchstart", resumeOnInteraction);
-    document.addEventListener("mousedown", resumeOnInteraction);
+    // Add event listeners for user interaction
+    // Use capture phase to ensure we catch the events
+    const options = { capture: true, passive: true };
 
-    // Also resume on play button click specifically
-    const playButtons = document.querySelectorAll(
-      "#playPauseBtn, #cardPlayPause, .music-btn",
+    document.addEventListener("click", resumeOnInteraction, options);
+    document.addEventListener("keydown", resumeOnInteraction, options);
+    document.addEventListener("touchstart", resumeOnInteraction, options);
+    document.addEventListener("mousedown", resumeOnInteraction, options);
+
+    // Also listen to specific play buttons
+    document.addEventListener(
+      "click",
+      (e) => {
+        if (e.target.closest("#playPauseBtn, #cardPlayPause, .music-btn")) {
+          resumeOnInteraction(e);
+        }
+      },
+      options,
     );
-    playButtons.forEach((btn) => {
-      btn.addEventListener("click", resumeOnInteraction);
-    });
-
-    // Handle theme toggle button
-    const themeButtons = document.querySelectorAll(".theme-toggle-btn");
-    themeButtons.forEach((btn) => {
-      btn.addEventListener("click", resumeOnInteraction);
-    });
-
-    // Handle navigation buttons
-    const navButtons = document.querySelectorAll(
-      ".back-btn, .nav-link, .btn-primary, .btn-secondary",
-    );
-    navButtons.forEach((btn) => {
-      btn.addEventListener("click", resumeOnInteraction);
-    });
   }
 
   setupMobileInteraction() {
-    // Only show if not already interacted
-    if (this.userInteracted) return;
+    // Only show if not already interacted and on mobile
+    if (this.userInteracted || !this.isMobile) return;
 
     // Check if overlay already exists
     if (document.querySelector(".mobile-audio-overlay")) return;
@@ -161,22 +161,23 @@ class AudioSystem {
     const overlay = document.createElement("div");
     overlay.className = "mobile-audio-overlay";
     overlay.innerHTML = `
-            <div class="mobile-audio-prompt">
-                <i class="fas fa-music"></i>
-                <h3>Tap to Enable Audio</h3>
-                <p>Mobile browsers require user interaction to play audio. Tap anywhere to enable music.</p>
-                <button id="enableAudioBtn" class="btn-primary">
-                    <i class="fas fa-play"></i>
-                    <span>Enable Audio</span>
-                </button>
-            </div>
-        `;
+      <div class="mobile-audio-prompt">
+        <i class="fas fa-music"></i>
+        <h3>Tap to Enable Audio</h3>
+        <p>Mobile browsers require user interaction to play audio. Tap anywhere to enable music.</p>
+        <button id="enableAudioBtn" class="btn-primary">
+          <i class="fas fa-play"></i>
+          <span>Enable Audio</span>
+        </button>
+      </div>
+    `;
 
     document.body.appendChild(overlay);
 
     // Enable audio on button click
-    document.getElementById("enableAudioBtn").addEventListener("click", () => {
+    document.getElementById("enableAudioBtn").addEventListener("click", (e) => {
       console.log("Enable audio button clicked");
+      e.stopPropagation();
       this.userInteracted = true;
       localStorage.setItem("audioInteraction", "true");
       overlay.classList.add("hidden");
@@ -185,11 +186,11 @@ class AudioSystem {
       this.resumeAudioContext();
 
       // Start playing
-      if (this.currentTrack) {
-        this.resume();
-      } else {
-        this.playRandomTrack();
-      }
+      setTimeout(() => {
+        if (!this.isPlaying) {
+          this.playRandomTrack();
+        }
+      }, 500);
     });
 
     // Also enable on overlay click
@@ -218,7 +219,7 @@ class AudioSystem {
         ) {
           this.setupMobileInteraction();
         }
-      }, 2000);
+      }, 1000);
       return;
     }
 
@@ -228,29 +229,6 @@ class AudioSystem {
       setTimeout(() => {
         this.playRandomTrack();
       }, 1000);
-    } else if (!this.userInteracted) {
-      // Try a gentle start with very low volume
-      console.log("No interaction yet, preparing for gentle start...");
-      setTimeout(() => {
-        this.prepareForAutoPlay();
-      }, 1500);
-    }
-  }
-
-  prepareForAutoPlay() {
-    // Preload a track but don't play it
-    const track = this.getRandomTrack();
-    this.currentTrack = track;
-    this.audioElement.src = track;
-    this.audioElement.load();
-
-    console.log("Track preloaded for quick start:", track);
-
-    // Set volume to 0 for silent preload
-    if (this.gainNode) {
-      this.gainNode.gain.value = 0;
-    } else {
-      this.audioElement.volume = 0;
     }
   }
 
@@ -557,6 +535,7 @@ class AudioSystem {
   async stop() {
     await this.fadeOut();
     this.currentTrack = null;
+    this.dispatchEvent("stop");
   }
 
   // Pause playback
@@ -565,7 +544,6 @@ class AudioSystem {
 
     this.audioElement.pause();
     this.isPlaying = false;
-
     this.dispatchEvent("pause");
   }
 
@@ -747,21 +725,6 @@ class AudioSystem {
     return !!this.audioElement.canPlayType;
   }
 
-  // Get supported audio formats
-  getSupportedFormats() {
-    const formats = ["mp3", "ogg", "wav", "aac"];
-    const supported = [];
-
-    formats.forEach((format) => {
-      const mimeType = `audio/${format}`;
-      if (this.audioElement.canPlayType(mimeType) !== "") {
-        supported.push(format);
-      }
-    });
-
-    return supported;
-  }
-
   // Clean up resources
   destroy() {
     this.stop();
@@ -785,7 +748,10 @@ const audioSystem = new AudioSystem();
 // Initialize audio system when page loads
 document.addEventListener("DOMContentLoaded", () => {
   console.log("DOMContentLoaded - initializing audio system...");
-  audioSystem.init();
+  // Small delay to ensure everything is loaded
+  setTimeout(() => {
+    audioSystem.init();
+  }, 500);
 });
 
 // Export for use in other modules
