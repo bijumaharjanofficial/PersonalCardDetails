@@ -494,3 +494,140 @@
         justify-content: center;
     }
 }
+
+/* Modal Gallery - Mobile Fixes */
+.modal-gallery {
+    padding: 2rem;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--bg-secondary);
+    touch-action: pan-y pinch-zoom;
+}
+
+.gallery-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.gallery-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.gallery-viewport {
+    height: 300px;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    -webkit-overflow-scrolling: touch;
+    user-select: none;
+    touch-action: pan-y pinch-zoom;
+}
+
+.gallery-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+}
+
+.gallery-slide {
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    user-select: none;
+    touch-action: pan-y pinch-zoom;
+}
+
+.gallery-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: var(--radius-md);
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.gallery-btn {
+    background: none;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-base);
+    touch-action: manipulation;
+}
+
+.gallery-btn:hover {
+    background-color: var(--accent-primary);
+    color: white;
+}
+
+.gallery-counter {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    min-width: 60px;
+    text-align: center;
+}
+
+/* Mobile fixes for modal gallery */
+@media (max-width: 768px) {
+    .modal-gallery {
+        padding: 1.5rem;
+    }
+    
+    .gallery-viewport {
+        height: 250px;
+    }
+    
+    .gallery-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
+    }
+    
+    .gallery-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .gallery-controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-viewport {
+        height: 200px;
+    }
+    
+    .modal-gallery {
+        padding: 1rem;
+    }
+}
+
+/* Prevent text selection during swipe */
+.modal-gallery,
+.gallery-viewport,
+.gallery-track,
+.gallery-slide {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}

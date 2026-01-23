@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,16 +11,19 @@
     <link rel="stylesheet" href="css/card.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body class="theme-dark">
     <div class="card-container">
         <header class="card-header">
-            <!-- <a href="index.html" class="back-btn">
+            <a href="index.html" class="back-btn">
                 <i class="fas fa-arrow-left"></i>
                 <span>Return Home</span>
-            </a> -->
+            </a>
             <div class="header-controls">
                 <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle theme">
                     <i class="fas fa-moon"></i>
@@ -37,16 +41,16 @@
                     Access a card by using URL parameters:<br>
                     <code>card.html?id=IDENTIFIER</code> or <code>card.html?name=FirstName</code>
                 </p>
-                <a href="search.html" class="btn-primary">
+                <!-- <a href="search.html" class="btn-primary">
                     <span>Browse Archive</span>
                     <i class="fas fa-search"></i>
-                </a>
+                </a> -->
             </div>
 
             <div id="cardContent" class="card-content hidden">
                 <div class="card-wrapper">
                     <div class="card-glow" id="cardGlow"></div>
-                    
+
                     <div class="card-section identity-section">
                         <div class="section-header">
                             <h2 class="section-title">Core Identity</h2>
@@ -210,4 +214,5 @@
     <script src="js/data.js"></script>
     <script src="js/card.js"></script>
 </body>
+
 </html>

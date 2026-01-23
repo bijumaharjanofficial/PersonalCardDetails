@@ -12,6 +12,10 @@ class AudioSystem {
         this.trackHistory = [];
         this.maxHistory = 10;
         
+        // Mobile detection and interaction tracking
+        this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        this.userInteracted = false;
+        
         this.audioElement = document.getElementById('backgroundMusic') || 
                            document.getElementById('cardMusic') ||
                            document.createElement('audio');
@@ -26,14 +30,18 @@ class AudioSystem {
         // Create audio context if supported
         if (window.AudioContext || window.webkitAudioContext) {
             const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-            this.audioContext = new AudioContextClass();
-            
-            // Create gain node for volume control
-            this.gainNode = this.audioContext.createGain();
-            this.gainNode.connect(this.audioContext.destination);
-            this.gainNode.gain.value = this.volume;
-            
-            this.setupAudioElement();
+            try {
+                this.audioContext = new AudioContextClass();
+                
+                // Create gain node for volume control
+                this.gainNode = this.audioContext.createGain();
+                this.gainNode.connect(this.audioContext.destination);
+                this.gainNode.gain.value = this.volume;
+                
+                this.setupAudioElement();
+            } catch (error) {
+                console.warn('AudioContext not supported, using HTML5 audio only:', error);
+            }
         }
         
         // Event listeners
@@ -41,20 +49,117 @@ class AudioSystem {
         this.audioElement.addEventListener('error', (e) => this.onAudioError(e));
         
         // Resume audio context on user interaction
-        document.addEventListener('click', () => this.resumeAudioContext(), { once: true });
+        this.setupInteractionListeners();
+        
+        // Setup mobile interaction overlay if needed
+        if (this.isMobile && !this.userInteracted) {
+            setTimeout(() => this.setupMobileInteraction(), 1000);
+        }
+    }
+    
+    setupInteractionListeners() {
+        const resumeOnInteraction = () => {
+            this.userInteracted = true;
+            this.resumeAudioContext();
+            
+            // Start playing if we have a track waiting
+            if (this.currentTrack && !this.isPlaying) {
+                this.resume();
+            }
+            
+            // Remove overlay if it exists
+            const overlay = document.querySelector('.mobile-audio-overlay');
+            if (overlay) {
+                overlay.classList.add('hidden');
+                setTimeout(() => {
+                    if (overlay.parentNode) {
+                        overlay.parentNode.removeChild(overlay);
+                    }
+                }, 300);
+            }
+        };
+        
+        // Multiple interaction types
+        document.addEventListener('click', resumeOnInteraction);
+        document.addEventListener('keydown', resumeOnInteraction);
+        document.addEventListener('touchstart', resumeOnInteraction);
+        
+        // Also resume on play button click specifically
+        const playButtons = document.querySelectorAll('#playPauseBtn, #cardPlayPause, .music-btn');
+        playButtons.forEach(btn => {
+            btn.addEventListener('click', resumeOnInteraction);
+        });
+    }
+    
+    setupMobileInteraction() {
+        // Only show if not already interacted and on mobile
+        if (this.userInteracted || !this.isMobile) return;
+        
+        // Check if overlay already exists
+        if (document.querySelector('.mobile-audio-overlay')) return;
+        
+        // Create overlay
+        const overlay = document.createElement('div');
+        overlay.className = 'mobile-audio-overlay';
+        overlay.innerHTML = `
+            <div class="mobile-audio-prompt">
+                <i class="fas fa-music"></i>
+                <h3>Tap to Enable Audio</h3>
+                <p>Mobile browsers require user interaction to play audio. Tap anywhere to enable music.</p>
+                <button id="enableAudioBtn" class="btn-primary">
+                    <i class="fas fa-play"></i>
+                    <span>Enable Audio</span>
+                </button>
+            </div>
+        `;
+        
+        document.body.appendChild(overlay);
+        
+        // Enable audio on button click
+        document.getElementById('enableAudioBtn').addEventListener('click', () => {
+            this.userInteracted = true;
+            overlay.classList.add('hidden');
+            
+            // Resume audio context
+            this.resumeAudioContext();
+            
+            // Start playing
+            if (this.currentTrack) {
+                this.resume();
+            } else {
+                this.playRandomTrack();
+            }
+        });
+        
+        // Also enable on overlay click
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                this.userInteracted = true;
+                overlay.classList.add('hidden');
+                this.resumeAudioContext();
+            }
+        });
     }
     
     setupAudioElement() {
         if (!this.audioContext || !this.audioElement) return;
         
         // Create media element source
-        this.sourceNode = this.audioContext.createMediaElementSource(this.audioElement);
-        this.sourceNode.connect(this.gainNode);
+        try {
+            this.sourceNode = this.audioContext.createMediaElementSource(this.audioElement);
+            this.sourceNode.connect(this.gainNode);
+        } catch (error) {
+            console.warn('Could not create media element source:', error);
+        }
     }
     
     resumeAudioContext() {
         if (this.audioContext && this.audioContext.state === 'suspended') {
-            this.audioContext.resume();
+            this.audioContext.resume().then(() => {
+                console.log('AudioContext resumed successfully');
+            }).catch(error => {
+                console.warn('Error resuming AudioContext:', error);
+            });
         }
     }
     
@@ -99,6 +204,20 @@ class AudioSystem {
     async playTrack(trackUrl, fadeIn = true) {
         if (this.currentTrack === trackUrl && this.isPlaying) return;
         
+        // Check if mobile and no user interaction
+        if (this.isMobile && !this.userInteracted) {
+            console.log('Waiting for user interaction on mobile before playing:', trackUrl);
+            this.currentTrack = trackUrl;
+            this.audioElement.src = trackUrl;
+            
+            // Show mobile overlay if not already shown
+            if (!document.querySelector('.mobile-audio-overlay')) {
+                this.setupMobileInteraction();
+            }
+            
+            return;
+        }
+        
         try {
             // Fade out current track if playing
             if (this.isPlaying) {
@@ -110,13 +229,25 @@ class AudioSystem {
             this.audioElement.src = trackUrl;
             
             // Load the new track
-            await this.audioElement.load();
+            this.audioElement.load();
+            
+            // Wait for canplaythrough
+            await new Promise((resolve) => {
+                const canPlayHandler = () => {
+                    this.audioElement.removeEventListener('canplaythrough', canPlayHandler);
+                    resolve();
+                };
+                this.audioElement.addEventListener('canplaythrough', canPlayHandler);
+                
+                // Fallback timeout
+                setTimeout(resolve, 1000);
+            });
             
             // Play with fade in
             if (fadeIn) {
                 await this.fadeIn();
             } else {
-                this.gainNode.gain.value = this.volume;
+                this.setVolumeDirect(this.volume);
                 await this.audioElement.play();
                 this.isPlaying = true;
             }
@@ -128,38 +259,89 @@ class AudioSystem {
         } catch (error) {
             console.error('Error playing track:', error);
             this.dispatchEvent('error', { error });
+            
+            // If it's an autoplay error on mobile, setup interaction
+            if (error.name === 'NotAllowedError' && this.isMobile) {
+                this.setupMobileInteraction();
+            }
+            
             return false;
         }
     }
     
     // Fade in volume
     async fadeIn() {
+        // For mobile without AudioContext
         if (!this.audioContext) {
-            await this.audioElement.play();
-            this.isPlaying = true;
-            return;
+            try {
+                this.audioElement.volume = 0;
+                await this.audioElement.play();
+                this.isPlaying = true;
+                
+                // Simple fade in
+                let volume = 0;
+                const fadeInterval = setInterval(() => {
+                    volume += 0.05;
+                    this.audioElement.volume = Math.min(volume, this.volume);
+                    
+                    if (volume >= this.volume) {
+                        clearInterval(fadeInterval);
+                    }
+                }, 50);
+                
+                return;
+            } catch (error) {
+                console.error('Error in simple fadeIn:', error);
+                throw error;
+            }
         }
         
-        this.gainNode.gain.value = 0;
-        await this.audioElement.play();
-        this.isPlaying = true;
-        
-        this.gainNode.gain.setValueAtTime(0, this.audioContext.currentTime);
-        this.gainNode.gain.linearRampToValueAtTime(
-            this.volume,
-            this.audioContext.currentTime + this.fadeDuration / 1000
-        );
+        // With AudioContext
+        try {
+            this.gainNode.gain.value = 0;
+            await this.audioElement.play();
+            this.isPlaying = true;
+            
+            const currentTime = this.audioContext.currentTime;
+            this.gainNode.gain.setValueAtTime(0, currentTime);
+            this.gainNode.gain.linearRampToValueAtTime(
+                this.volume,
+                currentTime + this.fadeDuration / 1000
+            );
+        } catch (error) {
+            console.error('Error in AudioContext fadeIn:', error);
+            throw error;
+        }
     }
     
     // Fade out volume
     async fadeOut() {
-        if (!this.isPlaying || !this.audioContext) return;
+        if (!this.isPlaying) return;
         
         return new Promise((resolve) => {
-            this.gainNode.gain.setValueAtTime(this.volume, this.audioContext.currentTime);
+            // Simple fade out for non-AudioContext
+            if (!this.audioContext) {
+                let volume = this.audioElement.volume;
+                const fadeInterval = setInterval(() => {
+                    volume -= 0.05;
+                    this.audioElement.volume = Math.max(volume, 0);
+                    
+                    if (volume <= 0) {
+                        clearInterval(fadeInterval);
+                        this.audioElement.pause();
+                        this.isPlaying = false;
+                        resolve();
+                    }
+                }, 50);
+                return;
+            }
+            
+            // With AudioContext
+            const currentTime = this.audioContext.currentTime;
+            this.gainNode.gain.setValueAtTime(this.volume, currentTime);
             this.gainNode.gain.linearRampToValueAtTime(
                 0,
-                this.audioContext.currentTime + this.fadeDuration / 1000
+                currentTime + this.fadeDuration / 1000
             );
             
             setTimeout(() => {
@@ -168,6 +350,15 @@ class AudioSystem {
                 resolve();
             }, this.fadeDuration);
         });
+    }
+    
+    // Set volume directly (without animation)
+    setVolumeDirect(value) {
+        if (this.gainNode) {
+            this.gainNode.gain.value = value;
+        } else {
+            this.audioElement.volume = value;
+        }
     }
     
     // Stop playback
@@ -182,6 +373,8 @@ class AudioSystem {
         
         this.audioElement.pause();
         this.isPlaying = false;
+        
+        this.dispatchEvent('pause');
     }
     
     // Resume playback
@@ -189,10 +382,22 @@ class AudioSystem {
         if (this.isPlaying || !this.currentTrack) return;
         
         try {
+            // Check for mobile interaction
+            if (this.isMobile && !this.userInteracted) {
+                this.setupMobileInteraction();
+                return;
+            }
+            
             await this.audioElement.play();
             this.isPlaying = true;
+            this.dispatchEvent('resume');
         } catch (error) {
             console.error('Error resuming playback:', error);
+            
+            // If it's an autoplay error on mobile
+            if (error.name === 'NotAllowedError' && this.isMobile) {
+                this.setupMobileInteraction();
+            }
         }
     }
     
@@ -237,16 +442,24 @@ class AudioSystem {
         this.isPlaying = false;
         this.dispatchEvent('trackend', { track: this.currentTrack });
         
-        // Auto-play next track
-        setTimeout(() => this.playRandomTrack(), 1000);
+        // Auto-play next track after a delay
+        setTimeout(() => {
+            if (!this.isPlaying) {
+                this.playRandomTrack();
+            }
+        }, 1000);
     }
     
     onAudioError(event) {
         console.error('Audio error:', event);
         this.dispatchEvent('error', { error: event });
         
-        // Try next track on error
-        setTimeout(() => this.playRandomTrack(), 2000);
+        // Try next track on error after delay
+        setTimeout(() => {
+            if (!this.isPlaying) {
+                this.playRandomTrack();
+            }
+        }, 2000);
     }
     
     // Event system
@@ -318,6 +531,42 @@ class AudioSystem {
         const secs = Math.floor(seconds % 60);
         return `${mins}:${secs.toString().padStart(2, '0')}`;
     }
+    
+    // Check if audio is supported
+    isAudioSupported() {
+        return !!this.audioElement.canPlayType;
+    }
+    
+    // Get supported audio formats
+    getSupportedFormats() {
+        const formats = ['mp3', 'ogg', 'wav', 'aac'];
+        const supported = [];
+        
+        formats.forEach(format => {
+            const mimeType = `audio/${format}`;
+            if (this.audioElement.canPlayType(mimeType) !== '') {
+                supported.push(format);
+            }
+        });
+        
+        return supported;
+    }
+    
+    // Clean up resources
+    destroy() {
+        this.stop();
+        
+        if (this.audioContext) {
+            this.audioContext.close();
+        }
+        
+        // Remove event listeners
+        this.audioElement.removeEventListener('ended', this.onTrackEnd);
+        this.audioElement.removeEventListener('error', this.onAudioError);
+        
+        // Clear all event listeners
+        this.eventListeners = {};
+    }
 }
 
 // Create global instance
@@ -327,17 +576,15 @@ const audioSystem = new AudioSystem();
 document.addEventListener('DOMContentLoaded', () => {
     audioSystem.loadVolume();
     
-    // Resume audio context on any user interaction
-    const resumeOnInteraction = () => {
-        audioSystem.resumeAudioContext();
-        document.removeEventListener('click', resumeOnInteraction);
-        document.removeEventListener('keydown', resumeOnInteraction);
-        document.removeEventListener('touchstart', resumeOnInteraction);
-    };
-    
-    document.addEventListener('click', resumeOnInteraction);
-    document.addEventListener('keydown', resumeOnInteraction);
-    document.addEventListener('touchstart', resumeOnInteraction);
+    // Check if we need to show mobile overlay
+    if (audioSystem.isMobile && !audioSystem.userInteracted) {
+        // Wait a bit then show overlay if still no interaction
+        setTimeout(() => {
+            if (!audioSystem.userInteracted && !document.querySelector('.mobile-audio-overlay')) {
+                audioSystem.setupMobileInteraction();
+            }
+        }, 2000);
+    }
 });
 
 // Export for use in other modules
