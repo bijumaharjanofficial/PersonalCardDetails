@@ -1,2 +1,0 @@
-# PersonalCardDetails
-MY PERSONAL CARD DETAIL WEBSITE

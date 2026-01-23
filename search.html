@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identity Archive | Search</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/search.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="theme-dark">
+    <div class="search-container">
+        <header class="search-header">
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                <span>Home</span>
+            </a>
+            <div class="header-title">
+                <h1>Identity Archive</h1>
+                <p class="subtitle">Hidden database of all available identities</p>
+            </div>
+            <div class="header-controls">
+                <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <main class="search-main">
+            <div class="search-bar-container">
+                <div class="search-input-wrapper">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="searchInput" placeholder="Search by name, nickname, username, or ID..." class="search-input" autocomplete="off">
+                    <div class="search-stats">
+                        <span id="resultsCount">0</span> identities
+                    </div>
+                </div>
+                <div class="search-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="has-gallery">With Gallery</button>
+                    <button class="filter-btn" data-filter="has-song">With Theme Song</button>
+                </div>
+            </div>
+
+            <div class="cards-grid" id="cardsGrid">
+                <!-- Cards will be dynamically inserted here -->
+            </div>
+
+            <div id="noResults" class="no-results hidden">
+                <div class="no-results-icon">
+                    <i class="fas fa-search-minus"></i>
+                </div>
+                <h3>No identities found</h3>
+                <p>Try a different search term or filter</p>
+            </div>
+        </main>
+
+        <footer class="search-footer">
+            <div class="footer-info">
+                <p>Double-click any card to open in detail view • Use arrow keys to navigate in modal</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Modal for card detail view -->
+    <div id="cardModal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2 class="modal-title">Identity Card</h2>
+                <button class="modal-close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-navigation">
+                <button class="nav-btn prev-card" id="prevCard">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Previous</span>
+                </button>
+                <button class="nav-btn next-card" id="nextCard">
+                    <span>Next</span>
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <div class="modal-content">
+                <!-- Card detail will be dynamically inserted here -->
+            </div>
+            <div class="modal-gallery hidden" id="modalGallery">
+                <div class="gallery-header">
+                    <h3>Gallery</h3>
+                    <div class="gallery-controls">
+                        <button class="gallery-btn prev" id="modalGalleryPrev">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="gallery-counter">
+                            <span id="modalGalleryCurrent">1</span> / <span id="modalGalleryTotal">0</span>
+                        </div>
+                        <button class="gallery-btn next" id="modalGalleryNext">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="gallery-viewport">
+                    <div class="gallery-track" id="modalGalleryTrack"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/search.js"></script>
+</body>
+</html>

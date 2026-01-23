@@ -1,0 +1,364 @@
+{
+  "cards": [
+    {
+      "id": "CORE-001",
+      "coreIdentity": {
+        "firstName": "Biju",
+        "lastName": "Maharjan",
+        "nickname": "Night Thinker",
+        "username": "biju.exe",
+        "dateOfBirth": "1999-04-14",
+        "age": 26,
+        "gender": "Male",
+        "nationality": "Nepali",
+        "bloodGroup": "O+"
+      },
+      "officialDetails": {
+        "cardNumber": "CORE-001",
+        "cardType": "Hero",
+        "organization": "Joint",
+        "role": "Strategist & Developer",
+        "issueDate": "2024-01-01",
+        "expiryDate": "2034-01-01"
+      },
+      "personalityTraits": {
+        "personalityType": "Ambivert (INTJ)",
+        "strengths": ["Creative", "Loyal", "Strategic"],
+        "weaknesses": ["Overthinking", "Emotional Attachment"],
+        "habits": ["Late-night thinking", "Music looping"],
+        "petPeeves": ["Dishonesty", "Slow Wi-Fi"]
+      },
+      "likesDislikes": {
+        "likes": ["Quiet nights", "Rainy weather", "Deep conversations", "Anime marathons"],
+        "dislikes": ["Fake people", "Loud crowds", "Being misunderstood"]
+      },
+      "favorites": {
+        "musicGenre": "Lo-fi / Indie",
+        "artist": "RADWIMPS",
+        "song": "assets/music/biju-theme.mp3",
+        "anime": "Naruto",
+        "animeCharacter": "Minato Namikaze",
+        "movieSeries": "Interstellar",
+        "game": "MLBB",
+        "food": "Momo",
+        "drink": "Coffee",
+        "color": "#7f5af0",
+        "quote": "Stay soft, think sharp."
+      },
+      "lifestyle": {
+        "hobbies": ["Coding", "Writing", "Gaming"],
+        "skills": ["Leadership", "Design", "Strategy"],
+        "dreamDestination": "Japan",
+        "biggestFear": "Losing meaningful connections",
+        "biggestMotivation": "Creating something that lasts"
+      },
+      "digitalSocial": {
+        "gamerTag": "biju.exe",
+        "socialHandle": "@bijumaharjan"
+      },
+      "storyMode": {
+        "lifeMotto": "Keep moving forward, even quietly.",
+        "makesHappy": "Peaceful nights and honest bonds",
+        "breaksThem": "Betrayal",
+        "protectAtAllCosts": "People he loves",
+        "secretSoftSpot": "Handwritten letters"
+      },
+      "media": {
+        "dp": "assets/images/dp/biju.png",
+        "gallery": [
+          "assets/images/gallery/biju1.jpg",
+          "assets/images/gallery/biju2.jpg"
+        ]
+      }
+    },
+    {
+      "id": "CORE-002",
+      "coreIdentity": {
+        "firstName": "Nomika",
+        "lastName": "Sato",
+        "nickname": "Moonbyte",
+        "username": "nomi.ai",
+        "dateOfBirth": "1997-08-22",
+        "age": 26,
+        "gender": "Female",
+        "nationality": "Japanese",
+        "bloodGroup": "A+"
+      },
+      "officialDetails": {
+        "cardNumber": "CORE-002",
+        "cardType": "Archivist",
+        "organization": "Digital Collective",
+        "role": "Data Curator",
+        "issueDate": "2023-11-15",
+        "expiryDate": "2033-11-15"
+      },
+      "personalityTraits": {
+        "personalityType": "Introvert (INFJ)",
+        "strengths": ["Analytical", "Empathetic", "Detail-oriented"],
+        "weaknesses": ["Perfectionist", "Avoids conflict"],
+        "habits": ["Morning meditation", "Data organizing"],
+        "petPeeves": ["Data corruption", "Loud noises"]
+      },
+      "likesDislikes": {
+        "likes": ["Synthwave music", "Rainy cafes", "Digital art", "Stargazing"],
+        "dislikes": ["Disorganization", "Bright lights", "Small talk"]
+      },
+      "favorites": {
+        "musicGenre": "Synthwave",
+        "artist": "HOME",
+        "song": "assets/music/nomika-theme.mp3",
+        "anime": "Serial Experiments Lain",
+        "animeCharacter": "Rei Ayanami",
+        "movieSeries": "Blade Runner 2049",
+        "game": "Stray",
+        "food": "Matcha desserts",
+        "drink": "Hojicha tea",
+        "color": "#ff7ad9",
+        "quote": "In data, we find truth."
+      },
+      "lifestyle": {
+        "hobbies": ["Digital painting", "Music production", "Reading sci-fi"],
+        "skills": ["Data analysis", "UI/UX design", "3D modeling"],
+        "dreamDestination": "Iceland",
+        "biggestFear": "Loss of digital memories",
+        "biggestMotivation": "Preserving digital culture"
+      },
+      "digitalSocial": {
+        "gamerTag": "moonbyte",
+        "socialHandle": "@nomika.sato",
+        "website": "nomika.digital"
+      },
+      "storyMode": {
+        "lifeMotto": "Find patterns in the chaos.",
+        "makesHappy": "Clean data and quiet moments",
+        "breaksThem": "Digital decay",
+        "protectAtAllCosts": "Digital archives",
+        "secretSoftSpot": "Vintage computer hardware"
+      },
+      "media": {
+        "dp": "assets/images/dp/nomika.png",
+        "gallery": [
+          "assets/images/gallery/nomika1.jpg",
+          "assets/images/gallery/nomika2.jpg",
+          "assets/images/gallery/nomika3.jpg"
+        ]
+      }
+    },
+    {
+      "id": "CORE-003",
+      "coreIdentity": {
+        "firstName": "Ria",
+        "lastName": "Khan",
+        "nickname": "Pixel Weaver",
+        "username": "ria.codes",
+        "dateOfBirth": "2000-12-03",
+        "age": 23,
+        "gender": "Female",
+        "nationality": "Indian",
+        "bloodGroup": "B+"
+      },
+      "officialDetails": {
+        "cardNumber": "CORE-003",
+        "cardType": "Creator",
+        "organization": "Art Collective",
+        "role": "Visual Designer & Developer",
+        "issueDate": "2023-09-20",
+        "expiryDate": "2033-09-20"
+      },
+      "personalityTraits": {
+        "personalityType": "Ambivert (ENFP)",
+        "strengths": ["Creative", "Energetic", "Adaptable"],
+        "weaknesses": ["Impulsive", "Overcommits"],
+        "habits": ["Sketching daily", "Coffee tasting"],
+        "petPeeves": ["Bland design", "Creative blocks"]
+      },
+      "likesDislikes": {
+        "likes": ["Street art", "Indie games", "Spicy food", "Music festivals"],
+        "dislikes": ["Monotony", "Creative restrictions", "Cold weather"]
+      },
+      "favorites": {
+        "musicGenre": "Indie Pop",
+        "artist": "Mitski",
+        "song": "assets/music/ria-theme.mp3",
+        "anime": "Your Name",
+        "animeCharacter": "Chihiro Ogino",
+        "movieSeries": "Everything Everywhere All at Once",
+        "game": "Hollow Knight",
+        "food": "Butter Chicken",
+        "drink": "Masala Chai",
+        "color": "#2cb67d",
+        "quote": "Create with intention, live with passion."
+      },
+      "lifestyle": {
+        "hobbies": ["Sketching", "Traveling", "Photography", "Game design"],
+        "skills": ["Illustration", "Front-end development", "Animation"],
+        "dreamDestination": "Iceland",
+        "biggestFear": "Creative stagnation",
+        "biggestMotivation": "Telling stories through art"
+      },
+      "digitalSocial": {
+        "gamerTag": "pixelweaver",
+        "socialHandle": "@ria.khan.design",
+        "portfolio": "riakhan.design"
+      },
+      "storyMode": {
+        "lifeMotto": "Every pixel tells a story.",
+        "makesHappy": "Seeing people connect with her art",
+        "breaksThem": "Creative burnout",
+        "protectAtAllCosts": "Her sketchbooks",
+        "secretSoftSpot": "Bad puns and dad jokes"
+      },
+      "media": {
+        "dp": "assets/images/dp/ria.png",
+        "gallery": [
+          "assets/images/gallery/ria1.jpg",
+          "assets/images/gallery/ria2.jpg"
+        ]
+      }
+    },
+    {
+      "id": "CORE-004",
+      "coreIdentity": {
+        "firstName": "Alex",
+        "lastName": "Chen",
+        "nickname": "Echo",
+        "username": "echo.sys",
+        "dateOfBirth": "1995-07-18",
+        "age": 28,
+        "gender": "Non-binary",
+        "nationality": "Taiwanese-American",
+        "bloodGroup": "AB-"
+      },
+      "officialDetails": {
+        "cardNumber": "CORE-004",
+        "cardType": "Technomancer",
+        "organization": "Neon Syndicate",
+        "role": "Systems Architect",
+        "issueDate": "2022-05-30",
+        "expiryDate": "2032-05-30"
+      },
+      "personalityTraits": {
+        "personalityType": "Introvert (INTP)",
+        "strengths": ["Logical", "Innovative", "Precise"],
+        "weaknesses": ["Socially awkward", "Forgetful"],
+        "habits": ["Tinkering with hardware", "Night cycling"],
+        "petPeeves": ["Inefficient code", "Proprietary software"]
+      },
+      "likesDislikes": {
+        "likes": ["Cyberpunk aesthetics", "Open source", "Bubble tea", "Rain"],
+        "dislikes": ["Corporate surveillance", "Hot weather", "Small talk"]
+      },
+      "favorites": {
+        "musicGenre": "Darksynth",
+        "artist": "Carpenter Brut",
+        "song": "assets/music/alex-theme.mp3",
+        "anime": "Psycho-Pass",
+        "animeCharacter": "Motoko Kusanagi",
+        "movieSeries": "The Matrix",
+        "game": "Cyberpunk 2077",
+        "food": "Hot pot",
+        "drink": "Oolong tea",
+        "color": "#08bdbd",
+        "quote": "Code is poetry, hardware is art."
+      },
+      "lifestyle": {
+        "hobbies": ["Hardware modding", "Urban exploration", "Synth building"],
+        "skills": ["Embedded systems", "Reverse engineering", "Network security"],
+        "dreamDestination": "Tokyo",
+        "biggestFear": "Technological dystopia",
+        "biggestMotivation": "Democratizing technology"
+      },
+      "digitalSocial": {
+        "gamerTag": "echo_sys",
+        "socialHandle": "@alex.chen",
+        "git": "github.com/echosys"
+      },
+      "storyMode": {
+        "lifeMotto": "Question everything, trust nothing.",
+        "makesHappy": "Solving impossible problems",
+        "breaksThem": "Technological oppression",
+        "protectAtAllCosts": "Digital freedom",
+        "secretSoftSpot": "Abandoned places"
+      },
+      "media": {
+        "dp": "assets/images/dp/alex.png",
+        "gallery": [
+          "assets/images/gallery/alex1.jpg",
+          "assets/images/gallery/alex2.jpg",
+          "assets/images/gallery/alex3.jpg"
+        ]
+      }
+    },
+    {
+      "id": "CORE-005",
+      "coreIdentity": {
+        "firstName": "Maya",
+        "lastName": "Rivera",
+        "nickname": "Solstice",
+        "username": "sol.sys",
+        "dateOfBirth": "1998-03-21",
+        "age": 25,
+        "gender": "Female",
+        "nationality": "Mexican",
+        "bloodGroup": "O-"
+      },
+      "officialDetails": {
+        "cardNumber": "CORE-005",
+        "cardType": "Gardener",
+        "organization": "Eco Collective",
+        "role": "Environmental Technologist",
+        "issueDate": "2023-04-22",
+        "expiryDate": "2033-04-22"
+      },
+      "personalityTraits": {
+        "personalityType": "Ambivert (ISFJ)",
+        "strengths": ["Compassionate", "Patient", "Practical"],
+        "weaknesses": ["Takes on too much", "Avoids confrontation"],
+        "habits": ["Morning gardening", "Herb collecting"],
+        "petPeeves": ["Environmental waste", "Disrespect for nature"]
+      },
+      "likesDislikes": {
+        "likes": ["Botanical gardens", "Rainforests", "Herbal tea", "Sunrises"],
+        "dislikes": ["Pollution", "Deforestation", "Plastic waste"]
+      },
+      "favorites": {
+        "musicGenre": "Ambient Folk",
+        "artist": "Hania Rani",
+        "song": "assets/music/maya-theme.mp3",
+        "anime": "Mushishi",
+        "animeCharacter": "Ginko",
+        "movieSeries": "Princess Mononoke",
+        "game": "Stardew Valley",
+        "food": "Vegetable tacos",
+        "drink": "Hibiscus tea",
+        "color": "#2cb67d",
+        "quote": "Growth takes time, but it's always worth it."
+      },
+      "lifestyle": {
+        "hobbies": ["Gardening", "Herbalism", "Pottery", "Nature photography"],
+        "skills": ["Permaculture", "Mycology", "Sustainable design"],
+        "dreamDestination": "Costa Rica rainforest",
+        "biggestFear": "Ecological collapse",
+        "biggestMotivation": "Creating sustainable communities"
+      },
+      "digitalSocial": {
+        "socialHandle": "@maya.rivera.eco",
+        "blog": "solstice.garden"
+      },
+      "storyMode": {
+        "lifeMotto": "Grow where you're planted.",
+        "makesHappy": "Seeing plants thrive",
+        "breaksThem": "Environmental destruction",
+        "protectAtAllCosts": "Ancient forests",
+        "secretSoftSpot": "Rescued plants"
+      },
+      "media": {
+        "dp": "assets/images/dp/maya.png",
+        "gallery": [
+          "assets/images/gallery/maya1.jpg",
+          "assets/images/gallery/maya2.jpg"
+        ]
+      }
+    }
+  ]
+}

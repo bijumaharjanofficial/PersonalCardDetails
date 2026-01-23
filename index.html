@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identity Archive | Home</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="theme-dark">
+    <div class="landing-container">
+        <div class="particles-container" id="particles"></div>
+        
+        <header class="landing-header">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fas fa-id-card"></i>
+                </div>
+                <h1 class="logo-text">IDENTITY ARCHIVE</h1>
+            </div>
+            <nav class="landing-nav">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="search.html" class="nav-link">Archive</a>
+                <div class="theme-toggle-container">
+                    <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </nav>
+        </header>
+
+        <main class="landing-main">
+            <div class="hero-section">
+                <div class="hero-text-container">
+                    <h2 class="hero-title">
+                        <span class="title-line">Living</span>
+                        <span class="title-line">Identities</span>
+                        <span class="title-line">Summoned</span>
+                    </h2>
+                    <p class="hero-subtitle">
+                        An atmospheric archive of souls, memories, and digital echoes. 
+                        Each card contains a complete identity, rendered from pure data.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="search.html" class="btn-primary">
+                            <span>Enter Archive</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="card.html?id=CORE-001" class="btn-secondary">
+                            <span>View Example</span>
+                            <i class="fas fa-eye"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="card-preview">
+                        <div class="preview-card">
+                            <div class="preview-card-inner">
+                                <div class="preview-glow" style="--glow-color: #7f5af0;"></div>
+                                <div class="preview-content">
+                                    <div class="preview-header">
+                                        <div class="preview-avatar">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                        <div class="preview-info">
+                                            <h3 class="preview-name">Biju Maharjan</h3>
+                                            <p class="preview-title">Strategist & Developer</p>
+                                        </div>
+                                    </div>
+                                    <div class="preview-stats">
+                                        <div class="stat">
+                                            <span class="stat-label">TYPE</span>
+                                            <span class="stat-value">Hero</span>
+                                        </div>
+                                        <div class="stat">
+                                            <span class="stat-label">ORGANIZATION</span>
+                                            <span class="stat-value">Joint</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="features-section">
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3 class="feature-title">Data-Driven</h3>
+                    <p class="feature-desc">Every identity rendered from a single JSON source. No hardcoded content.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3 class="feature-title">Atmospheric Audio</h3>
+                    <p class="feature-desc">Dynamic music system with smooth transitions between tracks.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="feature-title">Dynamic Theming</h3>
+                    <p class="feature-desc">Colors adapt to each identity's preferences. Dark/light modes.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="feature-title">Hidden Archive</h3>
+                    <p class="feature-desc">Search and browse identities in a modal-based interface.</p>
+                </div>
+            </div>
+
+            <div class="instructions-section">
+                <h3 class="instructions-title">How to Summon</h3>
+                <div class="instructions-grid">
+                    <div class="instruction">
+                        <div class="instruction-number">01</div>
+                        <h4>Direct Access</h4>
+                        <p>Navigate directly to a card using URL parameters: <code>card.html?id=CORE-001</code></p>
+                    </div>
+                    <div class="instruction">
+                        <div class="instruction-number">02</div>
+                        <h4>Archive Search</h4>
+                        <p>Visit the search page to browse all available identities and open them in a modal.</p>
+                    </div>
+                    <div class="instruction">
+                        <div class="instruction-number">03</div>
+                        <h4>Dynamic Rendering</h4>
+                        <p>Cards adapt to available data. Missing fields are omitted automatically.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="landing-footer">
+            <div class="music-controls">
+                <button id="playPauseBtn" class="music-btn" aria-label="Play/pause music">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button id="nextTrackBtn" class="music-btn" aria-label="Next track">
+                    <i class="fas fa-forward"></i>
+                </button>
+                <div class="volume-control">
+                    <button id="muteBtn" class="volume-btn" aria-label="Mute/unmute">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <input type="range" id="volumeSlider" min="0" max="100" value="70" class="volume-slider">
+                </div>
+                <div class="track-info">
+                    <span id="currentTrack">Ambient Track 1</span>
+                </div>
+            </div>
+            <div class="footer-text">
+                <p>Identity Archive v1.0 • Data-driven • Vanilla JS • No frameworks</p>
+            </div>
+        </footer>
+    </div>
+
+    <audio id="backgroundMusic" crossorigin="anonymous"></audio>
+
+    <script src="js/utils.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
