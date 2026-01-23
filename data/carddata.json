@@ -29,7 +29,12 @@
         "petPeeves": ["Dishonesty", "Slow Wi-Fi"]
       },
       "likesDislikes": {
-        "likes": ["Quiet nights", "Rainy weather", "Deep conversations", "Anime marathons"],
+        "likes": [
+          "Quiet nights",
+          "Rainy weather",
+          "Deep conversations",
+          "Anime marathons"
+        ],
         "dislikes": ["Fake people", "Loud crowds", "Being misunderstood"]
       },
       "favorites": {
@@ -67,296 +72,605 @@
         "dp": "assets/images/dp/biju.png",
         "gallery": [
           "assets/images/gallery/biju1.jpg",
-          "assets/images/gallery/biju2.jpg"
+          "assets/images/gallery/biju2.jpg",
+          "assets/images/gallery/biju3.jpg",
+          "assets/images/gallery/biju4.jpg",
+          "assets/images/gallery/biju5.jpg"
         ]
       }
     },
     {
-      "id": "CORE-002",
+      "id": "CARD-001",
       "coreIdentity": {
-        "firstName": "Nomika",
-        "lastName": "Sato",
-        "nickname": "Moonbyte",
-        "username": "nomi.ai",
-        "dateOfBirth": "1997-08-22",
-        "age": 26,
+        "firstName": "Saiba",
+        "lastName": "Shrestha",
+        "nickname": "Sabudana",
+        "username": "Xoxo.saiba",
+        "dateOfBirth": "2009-09-09",
+        "age": 16,
         "gender": "Female",
-        "nationality": "Japanese",
-        "bloodGroup": "A+"
-      },
-      "officialDetails": {
-        "cardNumber": "CORE-002",
-        "cardType": "Archivist",
-        "organization": "Digital Collective",
-        "role": "Data Curator",
-        "issueDate": "2023-11-15",
-        "expiryDate": "2033-11-15"
-      },
-      "personalityTraits": {
-        "personalityType": "Introvert (INFJ)",
-        "strengths": ["Analytical", "Empathetic", "Detail-oriented"],
-        "weaknesses": ["Perfectionist", "Avoids conflict"],
-        "habits": ["Morning meditation", "Data organizing"],
-        "petPeeves": ["Data corruption", "Loud noises"]
-      },
-      "likesDislikes": {
-        "likes": ["Synthwave music", "Rainy cafes", "Digital art", "Stargazing"],
-        "dislikes": ["Disorganization", "Bright lights", "Small talk"]
-      },
-      "favorites": {
-        "musicGenre": "Synthwave",
-        "artist": "HOME",
-        "song": "assets/music/nomika-theme.mp3",
-        "anime": "Serial Experiments Lain",
-        "animeCharacter": "Rei Ayanami",
-        "movieSeries": "Blade Runner 2049",
-        "game": "Stray",
-        "food": "Matcha desserts",
-        "drink": "Hojicha tea",
-        "color": "#ff7ad9",
-        "quote": "In data, we find truth."
-      },
-      "lifestyle": {
-        "hobbies": ["Digital painting", "Music production", "Reading sci-fi"],
-        "skills": ["Data analysis", "UI/UX design", "3D modeling"],
-        "dreamDestination": "Iceland",
-        "biggestFear": "Loss of digital memories",
-        "biggestMotivation": "Preserving digital culture"
-      },
-      "digitalSocial": {
-        "gamerTag": "moonbyte",
-        "socialHandle": "@nomika.sato",
-        "website": "nomika.digital"
-      },
-      "storyMode": {
-        "lifeMotto": "Find patterns in the chaos.",
-        "makesHappy": "Clean data and quiet moments",
-        "breaksThem": "Digital decay",
-        "protectAtAllCosts": "Digital archives",
-        "secretSoftSpot": "Vintage computer hardware"
-      },
-      "media": {
-        "dp": "assets/images/dp/nomika.png",
-        "gallery": [
-          "assets/images/gallery/nomika1.jpg",
-          "assets/images/gallery/nomika2.jpg",
-          "assets/images/gallery/nomika3.jpg"
-        ]
-      }
-    },
-    {
-      "id": "CORE-003",
-      "coreIdentity": {
-        "firstName": "Ria",
-        "lastName": "Khan",
-        "nickname": "Pixel Weaver",
-        "username": "ria.codes",
-        "dateOfBirth": "2000-12-03",
-        "age": 23,
-        "gender": "Female",
-        "nationality": "Indian",
+        "nationality": "Nepali",
         "bloodGroup": "B+"
       },
       "officialDetails": {
-        "cardNumber": "CORE-003",
-        "cardType": "Creator",
-        "organization": "Art Collective",
-        "role": "Visual Designer & Developer",
-        "issueDate": "2023-09-20",
-        "expiryDate": "2033-09-20"
+        "cardNumber": "HERO-001",
+        "cardType": "Hero",
+        "organization": "Independent",
+        "role": "Creative Spirit",
+        "issueDate": "2026-01-23",
+        "expiryDate": "2026-01-31"
       },
       "personalityTraits": {
-        "personalityType": "Ambivert (ENFP)",
-        "strengths": ["Creative", "Energetic", "Adaptable"],
-        "weaknesses": ["Impulsive", "Overcommits"],
-        "habits": ["Sketching daily", "Coffee tasting"],
-        "petPeeves": ["Bland design", "Creative blocks"]
+        "personalityType": "Ambivert",
+        "strengths": ["Loyal", "Trustworthy", "Cheerful", "Creative"],
+        "weaknesses": ["Overthinking", "Social Anxiety", "Insecure"],
+        "habits": ["Music while working", "Checking social media constantly"],
+        "petPeeves": ["Copying others", "Being misunderstood"]
       },
       "likesDislikes": {
-        "likes": ["Street art", "Indie games", "Spicy food", "Music festivals"],
-        "dislikes": ["Monotony", "Creative restrictions", "Cold weather"]
+        "likes": ["Nature", "Music", "Photography"],
+        "dislikes": ["Crowds", "College", "Betrayal"]
       },
       "favorites": {
-        "musicGenre": "Indie Pop",
-        "artist": "Mitski",
-        "song": "assets/music/ria-theme.mp3",
-        "anime": "Your Name",
-        "animeCharacter": "Chihiro Ogino",
-        "movieSeries": "Everything Everywhere All at Once",
-        "game": "Hollow Knight",
-        "food": "Butter Chicken",
-        "drink": "Masala Chai",
-        "color": "#2cb67d",
-        "quote": "Create with intention, live with passion."
+        "musicGenre": "All genres",
+        "artist": "Daniel Caesar, Frank Ocean",
+        "song": "assets/music/saiba-theme.mp3",
+        "songname" : "White Ferrari",
+        "anime": "Attack on Titan",
+        "animeCharacter": "Levi Ackerman",
+        "movieSeries": "Spider-Man series",
+        "game": "Basketball",
+        "food": "Momo",
+        "drink": "Guava Juice",
+        "color": "#ff0000",
+        "quote": "Work smart not hard"
       },
       "lifestyle": {
-        "hobbies": ["Sketching", "Traveling", "Photography", "Game design"],
-        "skills": ["Illustration", "Front-end development", "Animation"],
-        "dreamDestination": "Iceland",
-        "biggestFear": "Creative stagnation",
-        "biggestMotivation": "Telling stories through art"
+        "hobbies": ["Photography", "Writing", "Singing", "Dancing"],
+        "skills": ["Singing", "Creative writing", "Emotional support"],
+        "dreamDestination": "Mount Everest",
+        "biggestFear": "Losing loved ones",
+        "biggestMotivation": "Personal growth"
       },
       "digitalSocial": {
-        "gamerTag": "pixelweaver",
-        "socialHandle": "@ria.khan.design",
-        "portfolio": "riakhan.design"
+        "gamerTag": "Not specified",
+        "socialHandle": "@a______xoxo.saiba"
       },
       "storyMode": {
-        "lifeMotto": "Every pixel tells a story.",
-        "makesHappy": "Seeing people connect with her art",
-        "breaksThem": "Creative burnout",
-        "protectAtAllCosts": "Her sketchbooks",
-        "secretSoftSpot": "Bad puns and dad jokes"
+        "lifeMotto": "Stay kind and cheerful",
+        "makesHappy": "Love and genuine connections",
+        "breaksThem": "Betrayal and dishonesty",
+        "protectAtAllCosts": "Loved ones and personal comfort",
+        "secretSoftSpot": "Romantic gestures and quality time"
       },
       "media": {
-        "dp": "assets/images/dp/ria.png",
+        "dp": "assets/images/dp/saiba.png",
         "gallery": [
-          "assets/images/gallery/ria1.jpg",
-          "assets/images/gallery/ria2.jpg"
+          "assets/images/gallery/saiba1.jpg",
+          "assets/images/gallery/saiba2.jpg",
+          "assets/images/gallery/saiba3.jpg",
+          "assets/images/gallery/saiba4.jpg",
+          "assets/images/gallery/saiba5.jpg"
         ]
       }
     },
     {
-      "id": "CORE-004",
+      "id": "CARD-002",
       "coreIdentity": {
-        "firstName": "Alex",
-        "lastName": "Chen",
-        "nickname": "Echo",
-        "username": "echo.sys",
-        "dateOfBirth": "1995-07-18",
-        "age": 28,
-        "gender": "Non-binary",
-        "nationality": "Taiwanese-American",
-        "bloodGroup": "AB-"
-      },
-      "officialDetails": {
-        "cardNumber": "CORE-004",
-        "cardType": "Technomancer",
-        "organization": "Neon Syndicate",
-        "role": "Systems Architect",
-        "issueDate": "2022-05-30",
-        "expiryDate": "2032-05-30"
-      },
-      "personalityTraits": {
-        "personalityType": "Introvert (INTP)",
-        "strengths": ["Logical", "Innovative", "Precise"],
-        "weaknesses": ["Socially awkward", "Forgetful"],
-        "habits": ["Tinkering with hardware", "Night cycling"],
-        "petPeeves": ["Inefficient code", "Proprietary software"]
-      },
-      "likesDislikes": {
-        "likes": ["Cyberpunk aesthetics", "Open source", "Bubble tea", "Rain"],
-        "dislikes": ["Corporate surveillance", "Hot weather", "Small talk"]
-      },
-      "favorites": {
-        "musicGenre": "Darksynth",
-        "artist": "Carpenter Brut",
-        "song": "assets/music/alex-theme.mp3",
-        "anime": "Psycho-Pass",
-        "animeCharacter": "Motoko Kusanagi",
-        "movieSeries": "The Matrix",
-        "game": "Cyberpunk 2077",
-        "food": "Hot pot",
-        "drink": "Oolong tea",
-        "color": "#08bdbd",
-        "quote": "Code is poetry, hardware is art."
-      },
-      "lifestyle": {
-        "hobbies": ["Hardware modding", "Urban exploration", "Synth building"],
-        "skills": ["Embedded systems", "Reverse engineering", "Network security"],
-        "dreamDestination": "Tokyo",
-        "biggestFear": "Technological dystopia",
-        "biggestMotivation": "Democratizing technology"
-      },
-      "digitalSocial": {
-        "gamerTag": "echo_sys",
-        "socialHandle": "@alex.chen",
-        "git": "github.com/echosys"
-      },
-      "storyMode": {
-        "lifeMotto": "Question everything, trust nothing.",
-        "makesHappy": "Solving impossible problems",
-        "breaksThem": "Technological oppression",
-        "protectAtAllCosts": "Digital freedom",
-        "secretSoftSpot": "Abandoned places"
-      },
-      "media": {
-        "dp": "assets/images/dp/alex.png",
-        "gallery": [
-          "assets/images/gallery/alex1.jpg",
-          "assets/images/gallery/alex2.jpg",
-          "assets/images/gallery/alex3.jpg"
-        ]
-      }
-    },
-    {
-      "id": "CORE-005",
-      "coreIdentity": {
-        "firstName": "Maya",
-        "lastName": "Rivera",
-        "nickname": "Solstice",
-        "username": "sol.sys",
-        "dateOfBirth": "1998-03-21",
-        "age": 25,
+        "firstName": "Sofiya",
+        "lastName": "Lama",
+        "nickname": "Sofiee",
+        "username": "sofiya lama",
+        "dateOfBirth": "2005-11-26",
+        "age": 20,
         "gender": "Female",
-        "nationality": "Mexican",
-        "bloodGroup": "O-"
+        "nationality": "Nepali",
+        "bloodGroup": "Unknown"
       },
       "officialDetails": {
-        "cardNumber": "CORE-005",
-        "cardType": "Gardener",
-        "organization": "Eco Collective",
-        "role": "Environmental Technologist",
-        "issueDate": "2023-04-22",
-        "expiryDate": "2033-04-22"
+        "cardNumber": "HUMAN-002",
+        "cardType": "Human",
+        "organization": "Joint",
+        "role": "Helper",
+        "issueDate": "2024-01-01",
+        "expiryDate": "2034-01-01"
       },
       "personalityTraits": {
-        "personalityType": "Ambivert (ISFJ)",
-        "strengths": ["Compassionate", "Patient", "Practical"],
-        "weaknesses": ["Takes on too much", "Avoids confrontation"],
-        "habits": ["Morning gardening", "Herb collecting"],
-        "petPeeves": ["Environmental waste", "Disrespect for nature"]
+        "personalityType": "Ambivert",
+        "strengths": ["Loyal", "Patient", "Understanding", "Problem-solving"],
+        "weaknesses": ["Social Anxiety", "Overthinking"],
+        "habits": ["Music while working", "Staying up late"],
+        "petPeeves": ["Loud chewing", "Crowded places", "Slow internet"]
       },
       "likesDislikes": {
-        "likes": ["Botanical gardens", "Rainforests", "Herbal tea", "Sunrises"],
-        "dislikes": ["Pollution", "Deforestation", "Plastic waste"]
+        "likes": ["Cloudy weather", "Late night deep conversations"],
+        "dislikes": ["Dishonesty", "Winter", "Being misunderstood"]
       },
       "favorites": {
-        "musicGenre": "Ambient Folk",
-        "artist": "Hania Rani",
-        "song": "assets/music/maya-theme.mp3",
-        "anime": "Mushishi",
-        "animeCharacter": "Ginko",
-        "movieSeries": "Princess Mononoke",
-        "game": "Stardew Valley",
-        "food": "Vegetable tacos",
-        "drink": "Hibiscus tea",
-        "color": "#2cb67d",
-        "quote": "Growth takes time, but it's always worth it."
+        "musicGenre": "Synthwave",
+        "artist": "The Weeknd",
+        "song": "assets/music/sofie-theme.mp3",
+        "songname": "Call Out My Name",
+        "anime": "Not specified",
+        "animeCharacter": "Not specified",
+        "movieSeries": "Variety",
+        "game": "Mobile Legends",
+        "food": "Keema Noodles",
+        "drink": "Cold Coffee",
+        "color": "#7f5af0",
+        "quote": "The best way out is through"
       },
       "lifestyle": {
-        "hobbies": ["Gardening", "Herbalism", "Pottery", "Nature photography"],
-        "skills": ["Permaculture", "Mycology", "Sustainable design"],
-        "dreamDestination": "Costa Rica rainforest",
-        "biggestFear": "Ecological collapse",
-        "biggestMotivation": "Creating sustainable communities"
+        "hobbies": ["Makeup artistry", "Listening to music"],
+        "skills": ["Cooking", "Makeup", "Problem-solving"],
+        "dreamDestination": "New Zealand",
+        "biggestFear": "Heights",
+        "biggestMotivation": "Personal growth"
       },
       "digitalSocial": {
-        "socialHandle": "@maya.rivera.eco",
-        "blog": "solstice.garden"
+        "gamerTag": "Not specified",
+        "socialHandle": "@sofiyaa_tamang"
       },
       "storyMode": {
-        "lifeMotto": "Grow where you're planted.",
-        "makesHappy": "Seeing plants thrive",
-        "breaksThem": "Environmental destruction",
-        "protectAtAllCosts": "Ancient forests",
-        "secretSoftSpot": "Rescued plants"
+        "lifeMotto": "This too shall pass",
+        "makesHappy": "Genuine connections and personal achievements",
+        "breaksThem": "Betrayal and misunderstanding",
+        "protectAtAllCosts": "Personal integrity and values",
+        "secretSoftSpot": "Sentimental gifts and heartfelt compliments"
       },
       "media": {
-        "dp": "assets/images/dp/maya.png",
+        "dp": "assets/images/dp/sofiya.png",
         "gallery": [
-          "assets/images/gallery/maya1.jpg",
-          "assets/images/gallery/maya2.jpg"
+          "assets/images/gallery/sofiya1.jpg",
+          "assets/images/gallery/sofiya2.jpg",
+          "assets/images/gallery/sofiya3.jpg"
+        ]
+      }
+    },
+    {
+      "id": "CARD-003",
+      "coreIdentity": {
+        "firstName": "Nischal",
+        "lastName": "Pokharel",
+        "nickname": "Kyzo",
+        "username": "Kyzo._1",
+        "dateOfBirth": "2007-08-23",
+        "age": 18,
+        "gender": "Male",
+        "nationality": "Nepali",
+        "bloodGroup": "O+"
+      },
+      "officialDetails": {
+        "cardNumber": "BAC-003",
+        "cardType": "Bachat",
+        "organization": "Independent",
+        "role": "Support & Strategist",
+        "issueDate": "2026-01-23",
+        "expiryDate": "2030-08-30"
+      },
+      "personalityTraits": {
+        "personalityType": "Strategic Thinker",
+        "strengths": ["Loyal", "Patient", "Strategic", "Logical"],
+        "weaknesses": ["Overthinking", "Anxiety", "Emotional sensitivity"],
+        "habits": ["Listening to music", "Late night thinking"],
+        "petPeeves": ["Betrayal", "People breaking promises"]
+      },
+      "likesDislikes": {
+        "likes": ["Deep conversations", "Anime", "Gaming"],
+        "dislikes": ["Dishonesty", "Liars", "Crowds"]
+      },
+      "favorites": {
+        "musicGenre": "Lo-fi, Pop, J-pop",
+        "artist": "Shawn Mendes / One Direction",
+        "song": "assets/music/nischal-theme.mp3",
+        "songname": "Treat You Better",
+        "anime": "Jujutsu Kaisen",
+        "animeCharacter": "Gojo Satoru",
+        "movieSeries": "The Originals",
+        "game": "Mobile Legends: Bang Bang",
+        "food": "Momo",
+        "drink": "Coffee",
+        "color": "#ff0000",
+        "quote": "In a world full of rudeness be the kindness"
+      },
+      "lifestyle": {
+        "hobbies": ["Gaming", "Reading", "Singing"],
+        "skills": [
+          "Problem-solving",
+          "Mental health support",
+          "Therapeutic listening"
+        ],
+        "dreamDestination": "USA",
+        "biggestFear": "Heights and failure",
+        "biggestMotivation": "Helping others and personal support"
+      },
+      "digitalSocial": {
+        "gamerTag": "KYzo._1",
+        "socialHandle": "@kyzo._1"
+      },
+      "storyMode": {
+        "lifeMotto": "Life is not a song to keep repeating on loop instead learn how to change it",
+        "makesHappy": "Helping others and meaningful connections",
+        "breaksThem": "Betrayal and high expectations",
+        "protectAtAllCosts": "Family and people he cares for",
+        "secretSoftSpot": "Acts of kindness and loyalty"
+      },
+      "media": {
+        "dp": "assets/images/dp/nischal.png",
+        "gallery": [
+          "assets/images/gallery/nischal1.jpg",
+          "assets/images/gallery/nischal2.jpg",
+          "assets/images/gallery/nischal3.jpg"
+        ]
+      }
+    },
+    {
+      "id": "CARD-004",
+      "coreIdentity": {
+        "firstName": "Sweetie",
+        "lastName": "Gurung",
+        "nickname": "Tweetiee",
+        "username": "sweetieggrg",
+        "dateOfBirth": "2008-10-31",
+        "age": 17,
+        "gender": "Female",
+        "nationality": "Nepali",
+        "bloodGroup": "O+"
+      },
+      "officialDetails": {
+        "cardNumber": "SCH-004",
+        "cardType": "Scholar",
+        "organization": "Creative Collective",
+        "role": "Writer & Comforter",
+        "issueDate": "2026-01-23",
+        "expiryDate": "2026-12-31"
+      },
+      "personalityTraits": {
+        "personalityType": "Extrovert with close people",
+        "strengths": ["Creative", "Compassionate", "Talkative"],
+        "weaknesses": ["Panics easily", "Emotional"],
+        "habits": ["Diary writing", "Being talkative"],
+        "petPeeves": ["Unwanted touching", "Lies"]
+      },
+      "likesDislikes": {
+        "likes": ["Poetry", "Traveling", "Reading"],
+        "dislikes": ["Lies", "Heights", "Dishonesty"]
+      },
+      "favorites": {
+        "musicGenre": "90s music",
+        "artist": "Queen",
+        "song": "assets/music/sweetie-theme.mp3",
+        "songname": "Forget Her",
+        "anime": "Bleach",
+        "animeCharacter": "Orihime Inoue",
+        "movieSeries": "All of Us Are Dead",
+        "game": "Mobile Legends",
+        "food": "Momo",
+        "drink": "Water",
+        "color": "#000000",
+        "quote": "Don't give up, keep moving forward"
+      },
+      "lifestyle": {
+        "hobbies": ["Traveling", "Writing", "Reading", "Sleeping"],
+        "skills": ["Creative writing", "Comforting people", "Sleeping"],
+        "dreamDestination": "Japan",
+        "biggestFear": "Heights",
+        "biggestMotivation": "Personal development and family"
+      },
+      "digitalSocial": {
+        "gamerTag": "Sweetieee",
+        "socialHandle": "@sweetieggrg"
+      },
+      "storyMode": {
+        "lifeMotto": "Don't give up",
+        "makesHappy": "Family and creative expression",
+        "breaksThem": "Lies and betrayal",
+        "protectAtAllCosts": "Family and personal values",
+        "secretSoftSpot": "Cute animals and heartfelt poetry"
+      },
+      "media": {
+        "dp": "assets/images/dp/sweetie.png",
+        "gallery": [
+          "assets/images/gallery/sweetie1.jpg",
+          "assets/images/gallery/sweetie2.jpg",
+          "assets/images/gallery/sweetie3.jpg"
+        ]
+      }
+    },
+    {
+      "id": "CARD-005",
+      "coreIdentity": {
+        "firstName": "Sagya",
+        "lastName": "Ghising",
+        "nickname": "Geniyasuuu",
+        "username": "Sagya_likes_2drw",
+        "dateOfBirth": "2007-05-08",
+        "age": 18,
+        "gender": "Female",
+        "nationality": "Nepali",
+        "bloodGroup": "AB+"
+      },
+      "officialDetails": {
+        "cardNumber": "WITCH-005",
+        "cardType": "Witch",
+        "organization": "WitchClan",
+        "role": "Witch Leader",
+        "issueDate": "2025-11-13",
+        "expiryDate": "2026-02-27"
+      },
+      "personalityTraits": {
+        "personalityType": "Bold & Creative",
+        "strengths": ["Loyal", "Humble", "Patient", "Artistic"],
+        "weaknesses": ["Overthinking", "Anxiety"],
+        "habits": ["Drawing", "Sketching", "Baking", "Cooking"],
+        "petPeeves": ["Slow internet", "Loud noises"]
+      },
+      "likesDislikes": {
+        "likes": ["Creating art", "Sleeping", "Eating", "Shopping"],
+        "dislikes": ["Slow internet", "Bad smells", "Dairy products"]
+      },
+      "favorites": {
+        "musicGenre": "Classical, Pop, Hiphop, Rap",
+        "artist": "Tribal Rain",
+        "song": "assets/music/sagya-theme.mp3",
+        "songname": "Laijau Malai",
+        "anime": "Pokémon",
+        "animeCharacter": "Ash Ketchum",
+        "movieSeries": "When I Fly Towards You",
+        "game": "Mobile Legends: Bang Bang",
+        "food": "Egg Fried Rice",
+        "drink": "Oreo Frappe",
+        "color": "#98FB98",
+        "quote": "Tit for tat"
+      },
+      "lifestyle": {
+        "hobbies": ["Sleeping", "Gaming", "Drawing", "Baking"],
+        "skills": ["Drawing", "Cooking", "Art creation"],
+        "dreamDestination": "Egypt",
+        "biggestFear": "Being worthless or a burden",
+        "biggestMotivation": "Helping people and creating art"
+      },
+      "digitalSocial": {
+        "gamerTag": "Waisted_Artmaker",
+        "socialHandle": "@sagya_likes_2drw"
+      },
+      "storyMode": {
+        "lifeMotto": "Quiet, Simple, Elegant, Prosperous",
+        "makesHappy": "Artistic creation and personal achievements",
+        "breaksThem": "Betrayal and dishonesty",
+        "protectAtAllCosts": "Personal tools and creative expression",
+        "secretSoftSpot": "Cute stationery and art supplies"
+      },
+      "media": {
+        "dp": "assets/images/dp/sagya.png",
+        "gallery": [
+          "assets/images/gallery/sagya1.jpg",
+          "assets/images/gallery/sagya2.jpg",
+          "assets/images/gallery/sagya3.jpg"
+        ]
+      }
+    },
+    {
+      "id": "CARD-006",
+      "coreIdentity": {
+        "firstName": "Lily",
+        "lastName": "Rai",
+        "nickname": "Lils",
+        "username": "Lils",
+        "dateOfBirth": "2002-08-23",
+        "age": 23,
+        "gender": "Female",
+        "nationality": "Chinese",
+        "bloodGroup": "A+"
+      },
+      "officialDetails": {
+        "cardNumber": "WITCH-006",
+        "cardType": "Witch",
+        "organization": "OP Clan",
+        "role": "Mysterious Sleeper",
+        "issueDate": "2026-01-22",
+        "expiryDate": "2026-01-25"
+      },
+      "personalityTraits": {
+        "personalityType": "Reserved & Observant",
+        "strengths": ["Strict", "Focused", "Independent"],
+        "weaknesses": ["Sleepy", "Withdrawn"],
+        "habits": ["Sleeping", "Quiet observation"],
+        "petPeeves": ["Disturbances during sleep"]
+      },
+      "likesDislikes": {
+        "likes": ["Sleeping", "Peace and quiet", "Gaming"],
+        "dislikes": ["Being awake", "Noise", "Interruptions"]
+      },
+      "favorites": {
+        "musicGenre": "Ambient & Lullabies",
+        "artist": "Unknown",
+        "song": "assets/music/lily-theme.mp3",
+        "songname": "Unknown",
+        "anime": "Unknown",
+        "animeCharacter": "Unknown",
+        "movieSeries": "Unknown",
+        "game": "Sleep",
+        "food": "Laphing",
+        "drink": "Vodka",
+        "color": "#888888",
+        "quote": "Move quietly"
+      },
+      "lifestyle": {
+        "hobbies": ["Gaming", "Sleeping", "Writing"],
+        "skills": ["Writing", "Observation", "Resting"],
+        "dreamDestination": "USA",
+        "biggestFear": "Insomnia",
+        "biggestMotivation": "Personal peace and comfort"
+      },
+      "digitalSocial": {
+        "gamerTag": "Lily",
+        "socialHandle": "@lils"
+      },
+      "storyMode": {
+        "lifeMotto": "Move quietly",
+        "makesHappy": "Peaceful rest and quiet moments",
+        "breaksThem": "Betrayal and broken trust",
+        "protectAtAllCosts": "Family and personal space",
+        "secretSoftSpot": "Comfortable pillows and blankets"
+      },
+      "media": {
+        "dp": "assets/images/dp/lily.png",
+        "gallery": [
+          "assets/images/gallery/lily1.jpg",
+          "assets/images/gallery/lily2.jpg"
+        ]
+      }
+    },
+    {
+      "id": "CARD-007",
+      "coreIdentity": {
+        "firstName": "Rojina",
+        "lastName": "Chapagain",
+        "nickname": "Rosie",
+        "username": "Vivian",
+        "dateOfBirth": "2005-12-13",
+        "age": 20,
+        "gender": "Female",
+        "nationality": "Nepali",
+        "bloodGroup": "B+"
+      },
+      "officialDetails": {
+        "cardNumber": "HUMAN-007",
+        "cardType": "Human",
+        "organization": "Leo Clan",
+        "role": "Professional",
+        "issueDate": "2026-01-23",
+        "expiryDate": "2027-01-23"
+      },
+      "personalityTraits": {
+        "personalityType": "Ambivert",
+        "strengths": ["Patient", "Kind", "Observant"],
+        "weaknesses": ["Overthinking", "Anxious"],
+        "habits": ["Listening to music while working"],
+        "petPeeves": ["Slow internet", "Dishonesty"]
+      },
+      "likesDislikes": {
+        "likes": ["Anime", "Novels", "Flowers", "Music"],
+        "dislikes": ["Crowds", "Liars", "Dishonesty"]
+      },
+      "favorites": {
+        "musicGenre": "Alternative Rock",
+        "artist": "Radiohead",
+        "song": "assets/music/rojina-theme.mp3",
+        "songname": "Creep",
+        "anime": "Naruto",
+        "animeCharacter": "Hashirama Senju",
+        "movieSeries": "Rockstar",
+        "game": "Chess",
+        "food": "Momo",
+        "drink": "Tea",
+        "color": "#ff0000",
+        "quote": "Life is all about the next step"
+      },
+      "lifestyle": {
+        "hobbies": ["Singing", "Reading", "Cooking"],
+        "skills": ["Cooking", "Singing", "Strategic thinking"],
+        "dreamDestination": "Mountains",
+        "biggestFear": "Failure",
+        "biggestMotivation": "Being kind and helpful"
+      },
+      "digitalSocial": {
+        "gamerTag": "Rojeenaa0o",
+        "socialHandle": "@rojeena_chapagain"
+      },
+      "storyMode": {
+        "lifeMotto": "Go with the flow",
+        "makesHappy": "Meaningful connections and personal growth",
+        "breaksThem": "Betrayal and broken trust",
+        "protectAtAllCosts": "Family and personal values",
+        "secretSoftSpot": "Heartfelt letters and small gestures"
+      },
+      "media": {
+        "dp": "assets/images/dp/rojina.png",
+        "gallery": [
+          "assets/images/gallery/rojina1.jpg",
+          "assets/images/gallery/rojina2.jpg",
+          "assets/images/gallery/rojina3.jpg"
+        ]
+      }
+    },
+    {
+      "id": "CARD-008",
+      "coreIdentity": {
+        "firstName": "Salina",
+        "lastName": "Rana",
+        "nickname": "Sallu",
+        "username": "Saselubee",
+        "dateOfBirth": "2003-03-18",
+        "age": 22,
+        "gender": "Female",
+        "nationality": "Nepali",
+        "bloodGroup": "Unknown"
+      },
+      "officialDetails": {
+        "cardNumber": "WITCH-008",
+        "cardType": "Witch",
+        "organization": "OwO Clan",
+        "role": "Mage",
+        "issueDate": "2026-01-23",
+        "expiryDate": "2026-03-18"
+      },
+      "personalityTraits": {
+        "personalityType": "Ambivert",
+        "strengths": ["Creative", "Patient", "Observant"],
+        "weaknesses": ["Social anxiety", "Overthinking"],
+        "habits": ["Gaming", "Crafting", "Yapping"],
+        "petPeeves": ["Loud chewing", "Slow internet", "Bad teammates"]
+      },
+      "likesDislikes": {
+        "likes": ["Rainy weather", "Deep conversations", "Beautiful scenery"],
+        "dislikes": [
+          "Energy mismatches",
+          "Boastful people",
+          "Being misunderstood"
+        ]
+      },
+      "favorites": {
+        "musicGenre": "Pop",
+        "artist": "Bartika Eam Rai",
+        "song": "assets/music/salina-theme.mp3",
+        "songname": "Kalpanik",
+        "anime": "Spy × Family",
+        "animeCharacter": "Anya Forger",
+        "movieSeries": "Avengers",
+        "game": "Mobile Legends: Bang Bang",
+        "food": "Momo",
+        "drink": "Coke",
+        "color": "#888888",
+        "quote": "Be selfish, love yourself more"
+      },
+      "lifestyle": {
+        "hobbies": ["Gaming", "Flower making", "Crafting"],
+        "skills": ["Cooking", "Problem-solving", "Communication"],
+        "dreamDestination": "Japan (Inazuma inspired)",
+        "biggestFear": "Being abandoned or misunderstood",
+        "biggestMotivation": "Self-love and personal growth"
+      },
+      "digitalSocial": {
+        "gamerTag": "Wïstêrïa☆",
+        "socialHandle": "@saselubee"
+      },
+      "storyMode": {
+        "lifeMotto": "Being selfish when it comes to self-care",
+        "makesHappy": "Peaceful moments and genuine connections",
+        "breaksThem": "Comparison and judgment",
+        "protectAtAllCosts": "Personal peace and boundaries",
+        "secretSoftSpot": "Cute crafts and heartfelt compliments"
+      },
+      "media": {
+        "dp": "assets/images/dp/salina.png",
+        "gallery": [
+          "assets/images/gallery/salina1.jpg",
+          "assets/images/gallery/salina2.jpg",
+          "assets/images/gallery/salina3.jpg",
+          "assets/images/gallery/salina4.jpg",
+          "assets/images/gallery/salina5.jpg"
         ]
       }
     }
