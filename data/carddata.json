@@ -1465,6 +1465,91 @@
           "assets/images/gallery/sujal5.jpg"
         ]
       }
+    },
+    {
+      "id": "Serikacutie",
+      "coreIdentity": {
+        "firstName": "Serika",
+        "lastName": "Dangol",
+        "nickname": "Pagal",
+        "username": "Serika206",
+        "dateOfBirth": "2005-05-13",
+        "age": 20,
+        "gender": "Female",
+        "nationality": "Nepali",
+        "bloodGroup": "A+"
+      },
+      "officialDetails": {
+        "cardNumber": "HERO-020",
+        "cardType": "Hero",
+        "organization": "Independent",
+        "role": "Independent Strategist",
+        "issueDate": "2025-12-12",
+        "expiryDate": "2027-05-12"
+      },
+      "personalityTraits": {
+        "personalityType": "INTJ Ambivert",
+        "strengths": ["Loyal", "Creative", "Focused", "Calm"],
+        "weaknesses": ["Overthinking", "Introverted"],
+        "habits": ["Late night thinking", "Music while working"],
+        "petPeeves": ["Slow internet", "Being late", "Tardiness"]
+      },
+      "likesDislikes": {
+        "likes": [
+          "Anime",
+          "Coffee shops",
+          "Quiet environments",
+          "Deep conversations"
+        ],
+        "dislikes": ["Dishonesty", "Crowds", "Betrayal"]
+      },
+      "favorites": {
+        "musicGenre": "Lo-fi, Indie Pop",
+        "artist": "Tribal Rain",
+        "song": "Iris",
+        "anime": "Black Clover",
+        "animeCharacter": "Asta",
+        "movieSeries": "Light Never Comes",
+        "game": "Mobile Legends: Bang Bang",
+        "food": "Momo",
+        "drink": "Coke",
+        "color": "#7f5af0",
+        "quote": "Silence speaks louder than words"
+      },
+      "lifestyle": {
+        "hobbies": ["Photography", "Gaming", "Dancing", "Singing", "Writing"],
+        "skills": [
+          "Cooking",
+          "Problem-solving",
+          "Strategic thinking",
+          "Creativity"
+        ],
+        "dreamDestination": "Japan",
+        "biggestFear": "Loneliness and isolation",
+        "biggestMotivation": "Helping others and personal growth"
+      },
+      "digitalSocial": {
+        "gamerTag": "Serikaofc",
+        "socialHandle": "@serika206"
+      },
+      "storyMode": {
+        "lifeMotto": "Keep moving forward",
+        "makesHappy": "Meaningful connections and creative expression",
+        "breaksThem": "Betrayal and broken trust",
+        "protectAtAllCosts": "Family and personal integrity",
+        "secretSoftSpot": "Thoughtful gestures and quiet understanding"
+      },
+      "media": {
+        "dp": "assets/images/dp/serika.png",
+        "gallery": [
+          "assets/images/gallery/serika1.jpg",
+          "assets/images/gallery/serika2.jpg",
+          "assets/images/gallery/serika3.jpg",
+          "assets/images/gallery/serika4.jpg",
+          "assets/images/gallery/serika5.jpg",
+          "assets/images/gallery/serika6.jpg"
+        ]
+      }
     }
   ]
 }

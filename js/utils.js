@@ -6,6 +6,9 @@ class Utils {
         this.touchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
         this.performance = window.performance && window.performance.now ? window.performance : Date;
         
+        // Gallery swipe tracking
+        this.currentGallery = null;
+        
         // Bind methods
         this.handleTouchStart = this.handleTouchStart.bind(this);
         this.handleTouchMove = this.handleTouchMove.bind(this);
@@ -23,6 +26,11 @@ class Utils {
         
         // Initialize any required polyfills
         this.initPolyfills();
+        
+        // Initialize audio interaction
+        this.initAudioInteraction();
+        
+        console.log('Utils initialized');
     }
 
     // Initialize polyfills for older browsers
@@ -40,6 +48,81 @@ class Utils {
                 clearTimeout(id);
             };
         }
+    }
+
+    // Initialize audio interaction on any user action
+    initAudioInteraction() {
+        const interactionEvents = ['click', 'touchstart', 'keydown', 'mousedown'];
+        
+        interactionEvents.forEach(event => {
+            document.addEventListener(event, () => {
+                if (window.audioSystem && !audioSystem.userInteracted) {
+                    console.log(`Audio interaction triggered by ${event} via utils`);
+                    audioSystem.userInteracted = true;
+                    
+                    // Try to resume audio context
+                    if (audioSystem.audioContext && audioSystem.audioContext.state === 'suspended') {
+                        audioSystem.audioContext.resume().then(() => {
+                            console.log('AudioContext resumed successfully via utils');
+                        }).catch(error => {
+                            console.warn('Error resuming AudioContext via utils:', error);
+                        });
+                    }
+                    
+                    // Remove any mobile overlays
+                    const overlay = document.querySelector('.mobile-audio-overlay');
+                    if (overlay) {
+                        overlay.classList.add('hidden');
+                        setTimeout(() => {
+                            if (overlay.parentNode) {
+                                overlay.parentNode.removeChild(overlay);
+                            }
+                        }, 300);
+                    }
+                }
+            }, { once: true });
+        });
+    }
+
+    // Trigger audio interaction manually
+    triggerAudioInteraction() {
+        if (window.audioSystem && !audioSystem.userInteracted) {
+            console.log('Triggering audio interaction via utils');
+            audioSystem.userInteracted = true;
+            
+            // Resume audio context
+            if (audioSystem.audioContext && audioSystem.audioContext.state === 'suspended') {
+                audioSystem.audioContext.resume().then(() => {
+                    console.log('AudioContext resumed successfully via trigger');
+                }).catch(error => {
+                    console.warn('Error resuming AudioContext via trigger:', error);
+                });
+            }
+            
+            // Try to start playing
+            setTimeout(() => {
+                if (audioSystem && !audioSystem.isPlaying && !audioSystem.currentTrack) {
+                    audioSystem.playRandomTrack();
+                }
+            }, 500);
+            
+            return true;
+        }
+        return false;
+    }
+
+    // Add a method to check audio status
+    checkAudioStatus() {
+        return {
+            hasAudioSystem: !!window.audioSystem,
+            userInteracted: window.audioSystem?.userInteracted || false,
+            isPlaying: window.audioSystem?.isPlaying || false,
+            currentTrack: window.audioSystem?.currentTrack || null,
+            volume: window.audioSystem?.volume || 0,
+            audioContextState: window.audioSystem?.audioContext?.state || 'none',
+            isMobile: this.mobile,
+            touchDevice: this.touchDevice
+        };
     }
 
     // DOM helper functions
@@ -504,7 +587,8 @@ class Utils {
             viewportWidth: window.innerWidth,
             viewportHeight: window.innerHeight,
             pixelRatio: window.devicePixelRatio || 1,
-            orientation: window.innerWidth > window.innerHeight ? 'landscape' : 'portrait'
+            orientation: window.innerWidth > window.innerHeight ? 'landscape' : 'portrait',
+            audioEnabled: window.audioSystem?.userInteracted || false
         };
     }
 
@@ -524,7 +608,8 @@ class Utils {
             webAudio: !!window.AudioContext || !!window.webkitAudioContext,
             webSpeech: 'speechSynthesis' in window,
             notifications: 'Notification' in window,
-            geolocation: 'geolocation' in navigator
+            geolocation: 'geolocation' in navigator,
+            audioEnabled: window.audioSystem?.userInteracted || false
         };
     }
 
@@ -779,7 +864,7 @@ class Utils {
     }
 
     // Setup gallery swipe
-    setupGallerySwipe(galleryElement, nextCallback, prevCallback) {
+    setupGallerySwipe(galleryElement, nextCallback, prevCallback, images = []) {
         if (!galleryElement) return;
         
         this.currentGallery = {
@@ -789,7 +874,7 @@ class Utils {
             isSwiping: false,
             swipeStartX: 0,
             swipeEndX: 0,
-            images: []
+            images: images
         };
         
         // Clear existing listeners
@@ -829,15 +914,77 @@ class Utils {
         
         this.currentGallery = null;
     }
+
+    // Force audio to start (for debugging)
+    forceAudioStart() {
+        if (window.audioSystem) {
+            console.log('Forcing audio to start...');
+            audioSystem.userInteracted = true;
+            audioSystem.resumeAudioContext();
+            
+            setTimeout(() => {
+                if (!audioSystem.isPlaying) {
+                    audioSystem.playRandomTrack();
+                }
+            }, 1000);
+            
+            return true;
+        }
+        return false;
+    }
+
+    // Test audio functionality
+    testAudio() {
+        console.log('Testing audio system...');
+        const status = this.checkAudioStatus();
+        console.log('Audio Status:', status);
+        
+        if (!status.hasAudioSystem) {
+            console.error('Audio system not found!');
+            return false;
+        }
+        
+        if (!status.userInteracted) {
+            console.log('Triggering audio interaction...');
+            this.triggerAudioInteraction();
+            
+            setTimeout(() => {
+                const newStatus = this.checkAudioStatus();
+                console.log('Updated Audio Status:', newStatus);
+                
+                if (newStatus.userInteracted && !newStatus.isPlaying) {
+                    console.log('Attempting to play random track...');
+                    if (window.audioSystem) {
+                        audioSystem.playRandomTrack();
+                    }
+                }
+            }, 1000);
+        } else if (!status.isPlaying) {
+            console.log('Audio is interacted but not playing. Starting playback...');
+            if (window.audioSystem) {
+                audioSystem.playRandomTrack();
+            }
+        }
+        
+        return true;
+    }
 }
 
 // Create global instance
 const utils = new Utils();
-utils.init();
 
 // Initialize lazy loading on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOMContentLoaded - initializing utils lazy loading...');
     utils.lazyLoadImages();
+    
+    // Test audio after everything loads
+    setTimeout(() => {
+        if (window.audioSystem && !audioSystem.userInteracted) {
+            console.log('No audio interaction yet. Running audio test...');
+            utils.testAudio();
+        }
+    }, 2000);
 });
 
 // Export for use in other modules

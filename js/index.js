@@ -13,11 +13,10 @@ class LandingPage {
   }
 
   init() {
+    console.log("LandingPage initializing...");
+
     // Initialize audio
     this.initAudio();
-
-    // Initialize theme
-    this.initTheme();
 
     // Initialize particles
     this.initParticles();
@@ -28,11 +27,15 @@ class LandingPage {
     // Initialize event listeners
     this.initEventListeners();
 
-    // Start ambient music
-    this.startAmbientMusic();
+    // Start ambient music with delay
+    setTimeout(() => {
+      this.startAmbientMusic();
+    }, 1500);
   }
 
   initAudio() {
+    console.log("Initializing audio controls...");
+
     // Set up audio controls
     if (this.playPauseBtn) {
       this.playPauseBtn.addEventListener("click", () => this.togglePlayPause());
@@ -50,12 +53,16 @@ class LandingPage {
       this.volumeSlider.addEventListener("input", (e) =>
         this.changeVolume(e.target.value),
       );
+
+      // Set initial volume from audio system
+      this.volumeSlider.value = Math.round(audioSystem.volume * 100);
     }
 
     // Update UI based on audio state
-    audioSystem.addEventListener("trackchange", (data) =>
-      this.updateTrackInfo(data.track),
-    );
+    audioSystem.addEventListener("trackchange", (data) => {
+      console.log("Track changed:", data.track);
+      this.updateTrackInfo(data.track);
+    });
     audioSystem.addEventListener("mutechange", (data) =>
       this.updateMuteButton(data.muted),
     );
@@ -67,14 +74,6 @@ class LandingPage {
     this.updatePlayPauseButton();
     this.updateMuteButton(audioSystem.isMuted);
     this.updateVolumeSlider(audioSystem.volume);
-  }
-
-  initTheme() {
-    if (this.themeToggleBtn) {
-      this.themeToggleBtn.addEventListener("click", () =>
-        themeSystem.toggleTheme(),
-      );
-    }
   }
 
   initParticles() {
@@ -142,13 +141,39 @@ class LandingPage {
   }
 
   startAmbientMusic() {
-    // Start playing random tracks
-    setTimeout(() => {
-      audioSystem.playRandomTrack();
-    }, 1000);
+    console.log("Starting ambient music...");
+    console.log("Audio system status:", {
+      userInteracted: audioSystem.userInteracted,
+      isPlaying: audioSystem.isPlaying,
+      currentTrack: audioSystem.currentTrack,
+    });
+
+    // Start playing random tracks if user has interacted
+    if (audioSystem.userInteracted && !audioSystem.isPlaying) {
+      console.log("User has interacted, starting music...");
+      setTimeout(() => {
+        audioSystem.playRandomTrack();
+      }, 500);
+    } else if (!audioSystem.userInteracted) {
+      console.log("Waiting for user interaction...");
+      // Setup gentle start
+      setTimeout(() => {
+        audioSystem.prepareForAutoPlay();
+      }, 1000);
+    }
   }
 
   togglePlayPause() {
+    console.log("Toggle play/pause clicked");
+
+    // Ensure audio interaction
+    if (!audioSystem.userInteracted) {
+      console.log("First interaction detected via play button");
+      audioSystem.userInteracted = true;
+      localStorage.setItem("audioInteraction", "true");
+      audioSystem.resumeAudioContext();
+    }
+
     if (audioSystem.isPlaying) {
       audioSystem.pause();
     } else {
@@ -159,6 +184,15 @@ class LandingPage {
   }
 
   nextTrack() {
+    console.log("Next track clicked");
+
+    // Ensure audio interaction
+    if (!audioSystem.userInteracted) {
+      audioSystem.userInteracted = true;
+      localStorage.setItem("audioInteraction", "true");
+      audioSystem.resumeAudioContext();
+    }
+
     audioSystem.nextTrack();
   }
 
@@ -215,5 +249,6 @@ class LandingPage {
 
 // Initialize landing page when DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("Initializing LandingPage...");
   new LandingPage();
 });

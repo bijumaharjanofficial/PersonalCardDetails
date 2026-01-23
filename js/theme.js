@@ -46,6 +46,8 @@ class ThemeSystem {
     init() {
         if (this.isInitialized) return;
         
+        console.log('ThemeSystem initializing...');
+        
         // Load saved theme
         this.loadTheme();
         
@@ -57,7 +59,11 @@ class ThemeSystem {
             document.body.classList.add('theme-transition');
         }, 100);
         
+        // Initialize theme toggle buttons
+        this.initThemeToggleButtons();
+        
         this.isInitialized = true;
+        console.log('ThemeSystem initialized');
     }
     
     loadTheme() {
@@ -120,6 +126,8 @@ class ThemeSystem {
         document.documentElement.style.setProperty('--accent-primary', primary);
         document.documentElement.style.setProperty('--accent-secondary', this.defaultAccents.secondary);
         document.documentElement.style.setProperty('--accent-danger', this.defaultAccents.danger);
+        document.documentElement.style.setProperty('--accent-warning', this.defaultAccents.warning);
+        document.documentElement.style.setProperty('--accent-info', this.defaultAccents.info);
         
         // Set dynamic accent color for cards
         if (this.accentColor) {
@@ -132,6 +140,7 @@ class ThemeSystem {
     }
     
     toggleTheme() {
+        console.log('Toggling theme');
         this.currentTheme = this.currentTheme === 'dark' ? 'light' : 'dark';
         this.applyTheme();
         this.saveTheme();
@@ -237,10 +246,37 @@ class ThemeSystem {
     }
     
     initThemeToggleButtons() {
+        console.log('Initializing theme toggle buttons...');
         const toggleButtons = document.querySelectorAll('.theme-toggle-btn');
         
         toggleButtons.forEach(button => {
-            button.addEventListener('click', () => this.toggleTheme());
+            // Remove any existing listeners
+            const newButton = button.cloneNode(true);
+            button.parentNode.replaceChild(newButton, button);
+            
+            // Add fresh listener
+            newButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                console.log('Theme button clicked');
+                
+                // Trigger audio interaction if needed
+                if (window.audioSystem && !audioSystem.userInteracted) {
+                    console.log('Theme button triggering audio interaction');
+                    audioSystem.userInteracted = true;
+                    localStorage.setItem('audioInteraction', 'true');
+                    audioSystem.resumeAudioContext();
+                    
+                    // Start music after a delay
+                    setTimeout(() => {
+                        if (!audioSystem.isPlaying) {
+                            audioSystem.playRandomTrack();
+                        }
+                    }, 500);
+                }
+                
+                // Toggle theme
+                this.toggleTheme();
+            });
         });
         
         this.updateToggleButton();
@@ -249,11 +285,6 @@ class ThemeSystem {
 
 // Create global instance
 const themeSystem = new ThemeSystem();
-
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    themeSystem.initThemeToggleButtons();
-});
 
 // Export for use in other modules
 if (typeof module !== 'undefined' && module.exports) {
