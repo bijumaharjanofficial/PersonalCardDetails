@@ -48,7 +48,7 @@ class AudioSystem {
         this.audioElement.addEventListener('ended', () => this.onTrackEnd());
         this.audioElement.addEventListener('error', (e) => this.onAudioError(e));
         
-        // Resume audio context on user interaction
+        // Setup interaction listeners
         this.setupInteractionListeners();
         
         // Setup mobile interaction overlay if needed

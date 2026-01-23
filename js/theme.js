@@ -4,9 +4,8 @@ class ThemeSystem {
         this.currentTheme = 'dark';
         this.accentColor = null;
         this.isInitialized = false;
-        this.transitionEnabled = false;
         
-        // Define color palettes for themes
+        // Define color palettes
         this.themes = {
             dark: {
                 '--bg-primary': '#0f0f1a',
@@ -47,22 +46,20 @@ class ThemeSystem {
     init() {
         if (this.isInitialized) return;
         
-        // Load saved theme from localStorage
+        // Load saved theme
         this.loadTheme();
         
         // Apply initial theme
         this.applyTheme();
         
-        // Add transition class after initial load
+        // Add transition after initial load
         setTimeout(() => {
             document.body.classList.add('theme-transition');
-            this.transitionEnabled = true;
         }, 100);
         
         this.isInitialized = true;
     }
     
-    // Load theme from localStorage
     loadTheme() {
         const savedTheme = localStorage.getItem('theme');
         const savedAccent = localStorage.getItem('accentColor');
@@ -84,7 +81,6 @@ class ThemeSystem {
         document.body.classList.add(`theme-${this.currentTheme}`);
     }
     
-    // Save theme to localStorage
     saveTheme() {
         localStorage.setItem('theme', this.currentTheme);
         if (this.accentColor) {
@@ -92,14 +88,13 @@ class ThemeSystem {
         }
     }
     
-    // Apply theme to document
     applyTheme() {
         const theme = this.themes[this.currentTheme];
         
         // Apply base theme variables
-        for (const [property, value] of Object.entries(theme)) {
+        Object.entries(theme).forEach(([property, value]) => {
             document.documentElement.style.setProperty(property, value);
-        }
+        });
         
         // Apply accent colors
         this.applyAccentColors();
@@ -108,11 +103,16 @@ class ThemeSystem {
         document.body.classList.remove('theme-dark', 'theme-light');
         document.body.classList.add(`theme-${this.currentTheme}`);
         
-        // Dispatch theme change event
-        this.dispatchEvent('themechange', { theme: this.currentTheme, accent: this.accentColor });
+        // Update toggle button icon
+        this.updateToggleButton();
+        
+        // Dispatch event
+        this.dispatchEvent('themechange', { 
+            theme: this.currentTheme, 
+            accent: this.accentColor 
+        });
     }
     
-    // Apply accent colors
     applyAccentColors() {
         const primary = this.accentColor || this.defaultAccents.primary;
         
@@ -120,8 +120,6 @@ class ThemeSystem {
         document.documentElement.style.setProperty('--accent-primary', primary);
         document.documentElement.style.setProperty('--accent-secondary', this.defaultAccents.secondary);
         document.documentElement.style.setProperty('--accent-danger', this.defaultAccents.danger);
-        document.documentElement.style.setProperty('--accent-warning', this.defaultAccents.warning);
-        document.documentElement.style.setProperty('--accent-info', this.defaultAccents.info);
         
         // Set dynamic accent color for cards
         if (this.accentColor) {
@@ -133,19 +131,13 @@ class ThemeSystem {
         }
     }
     
-    // Toggle between dark and light themes
     toggleTheme() {
         this.currentTheme = this.currentTheme === 'dark' ? 'light' : 'dark';
         this.applyTheme();
         this.saveTheme();
-        
-        // Update toggle button icon
-        this.updateToggleButton();
-        
         return this.currentTheme;
     }
     
-    // Set specific theme
     setTheme(theme) {
         if (!this.themes[theme]) {
             console.error(`Invalid theme: ${theme}`);
@@ -155,12 +147,9 @@ class ThemeSystem {
         this.currentTheme = theme;
         this.applyTheme();
         this.saveTheme();
-        this.updateToggleButton();
-        
         return true;
     }
     
-    // Set accent color
     setAccentColor(color) {
         if (!this.isValidColor(color)) {
             console.error(`Invalid color: ${color}`);
@@ -170,18 +159,15 @@ class ThemeSystem {
         this.accentColor = color;
         this.applyAccentColors();
         this.saveTheme();
-        
         return true;
     }
     
-    // Reset to default accent
     resetAccentColor() {
         this.accentColor = null;
         this.applyAccentColors();
         localStorage.removeItem('accentColor');
     }
     
-    // Update toggle button icon
     updateToggleButton() {
         const toggleButtons = document.querySelectorAll('.theme-toggle-btn');
         
@@ -193,7 +179,6 @@ class ThemeSystem {
         });
     }
     
-    // Validate color (hex, rgb, hsl, or named color)
     isValidColor(color) {
         if (!color) return false;
         
@@ -202,72 +187,13 @@ class ThemeSystem {
         if (hexRegex.test(color)) return true;
         
         // Test for rgb/rgba color
-        const rgbRegex = /^rgb(a?)\((\s*\d+\s*,){2}\s*\d+\s*(,\s*\d+(\.\d+)?\s*)?\)$/;
+        const rgbRegex = /^rgba?\((\s*\d+\s*,){2}\s*\d+\s*(,\s*\d+(\.\d+)?\s*)?\)$/;
         if (rgbRegex.test(color)) return true;
-        
-        // Test for hsl/hsla color
-        const hslRegex = /^hsl(a?)\((\s*\d+\s*,){2}\s*\d+%\s*(,\s*\d+(\.\d+)?\s*)?\)$/;
-        if (hslRegex.test(color)) return true;
         
         // Check for named colors
         const tempElement = document.createElement('div');
         tempElement.style.color = color;
         return tempElement.style.color !== '';
-    }
-    
-    // Generate complementary color
-    generateComplementaryColor(color) {
-        if (!this.isValidColor(color)) return this.defaultAccents.secondary;
-        
-        // Simple complement generation for hex colors
-        if (color.startsWith('#')) {
-            let hex = color.slice(1);
-            
-            if (hex.length === 3) {
-                hex = hex.split('').map(c => c + c).join('');
-            }
-            
-            const r = parseInt(hex.slice(0, 2), 16);
-            const g = parseInt(hex.slice(2, 4), 16);
-            const b = parseInt(hex.slice(4, 6), 16);
-            
-            // Calculate complement
-            const compR = (255 - r).toString(16).padStart(2, '0');
-            const compG = (255 - g).toString(16).padStart(2, '0');
-            const compB = (255 - b).toString(16).padStart(2, '0');
-            
-            return `#${compR}${compG}${compB}`;
-        }
-        
-        return this.defaultAccents.secondary;
-    }
-    
-    // Get contrast color (for text on colored backgrounds)
-    getContrastColor(color) {
-        if (!this.isValidColor(color)) return '#ffffff';
-        
-        // Convert to RGB
-        let r, g, b;
-        
-        if (color.startsWith('#')) {
-            let hex = color.slice(1);
-            
-            if (hex.length === 3) {
-                hex = hex.split('').map(c => c + c).join('');
-            }
-            
-            r = parseInt(hex.slice(0, 2), 16);
-            g = parseInt(hex.slice(2, 4), 16);
-            b = parseInt(hex.slice(4, 6), 16);
-        } else {
-            // For simplicity, return white for non-hex colors
-            return '#ffffff';
-        }
-        
-        // Calculate luminance
-        const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-        
-        return luminance > 0.5 ? '#000000' : '#ffffff';
     }
     
     // Event system
@@ -301,7 +227,6 @@ class ThemeSystem {
         });
     }
     
-    // Get current theme info
     getThemeInfo() {
         return {
             theme: this.currentTheme,
@@ -311,7 +236,6 @@ class ThemeSystem {
         };
     }
     
-    // Initialize theme toggle buttons
     initThemeToggleButtons() {
         const toggleButtons = document.querySelectorAll('.theme-toggle-btn');
         

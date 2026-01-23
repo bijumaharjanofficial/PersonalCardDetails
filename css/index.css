@@ -393,6 +393,7 @@
     color: var(--text-primary);
     font-size: 1rem;
     transition: all var(--transition-base);
+    touch-action: manipulation;
 }
 
 .music-btn:hover {
@@ -410,6 +411,7 @@
 .volume-slider {
     width: 100px;
     height: 4px;
+    -webkit-appearance: none;
     background-color: var(--border-color);
     border-radius: 2px;
     outline: none;
@@ -479,6 +481,7 @@
     
     .features-section {
         grid-template-columns: 1fr;
+        padding: 3rem 0;
     }
     
     .landing-footer {
@@ -489,5 +492,39 @@
     
     .footer-text {
         text-align: center;
+    }
+    
+    .music-controls {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .preview-card {
+        width: 280px;
+        height: 350px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title-line {
+        font-size: 2.2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .hero-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .instruction {
+        padding: 2rem 1.5rem;
     }
 }

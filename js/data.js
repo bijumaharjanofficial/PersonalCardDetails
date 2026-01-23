@@ -15,7 +15,6 @@ class DataSystem {
         this.loadFromCache();
     }
     
-    // Load data from JSON file
     async loadData() {
         if (this.isLoading) {
             return new Promise((resolve) => {
@@ -63,7 +62,6 @@ class DataSystem {
         }
     }
     
-    // Save data to cache
     saveToCache(data) {
         try {
             const cacheData = {
@@ -77,7 +75,6 @@ class DataSystem {
         }
     }
     
-    // Load data from cache
     loadFromCache() {
         try {
             const cacheString = localStorage.getItem(this.cacheKey);
@@ -105,12 +102,10 @@ class DataSystem {
         }
     }
     
-    // Get all cards
     getAllCards() {
         return this.cards;
     }
     
-    // Get card by ID
     getCardById(id) {
         if (!id) return null;
         
@@ -123,7 +118,6 @@ class DataSystem {
         );
     }
     
-    // Get card by name
     getCardByName(name) {
         if (!name) return null;
         
@@ -143,7 +137,6 @@ class DataSystem {
         });
     }
     
-    // Search cards by query
     searchCards(query) {
         if (!query || query.trim() === '') {
             return this.cards;
@@ -189,14 +182,12 @@ class DataSystem {
         });
     }
     
-    // Filter cards by criteria
     filterCards(criteria) {
         return this.cards.filter(card => {
             // Check each criterion
             for (const [key, value] of Object.entries(criteria)) {
                 if (value === undefined || value === null) continue;
                 
-                // Handle special filters
                 switch (key) {
                     case 'hasGallery':
                         if (value && (!card.media?.gallery || card.media.gallery.length === 0)) {
@@ -251,12 +242,10 @@ class DataSystem {
         });
     }
     
-    // Get card index by ID
     getCardIndex(id) {
         return this.cards.findIndex(card => card.id === id);
     }
     
-    // Get next card
     getNextCard(currentId) {
         const currentIndex = this.getCardIndex(currentId);
         
@@ -267,7 +256,6 @@ class DataSystem {
         return this.cards[currentIndex + 1];
     }
     
-    // Get previous card
     getPreviousCard(currentId) {
         const currentIndex = this.getCardIndex(currentId);
         
@@ -278,7 +266,6 @@ class DataSystem {
         return this.cards[currentIndex - 1];
     }
     
-    // Get random card
     getRandomCard() {
         if (this.cards.length === 0) return null;
         
@@ -286,26 +273,22 @@ class DataSystem {
         return this.cards[randomIndex];
     }
     
-    // Get cards count
     getCardsCount() {
         return this.cards.length;
     }
     
-    // Get cards by organization
     getCardsByOrganization(organization) {
         return this.cards.filter(card => 
             card.officialDetails?.organization?.toLowerCase() === organization.toLowerCase()
         );
     }
     
-    // Get cards by card type
     getCardsByType(cardType) {
         return this.cards.filter(card => 
             card.officialDetails?.cardType?.toLowerCase() === cardType.toLowerCase()
         );
     }
     
-    // Get unique organizations
     getUniqueOrganizations() {
         const organizations = new Set();
         
@@ -318,7 +301,6 @@ class DataSystem {
         return Array.from(organizations);
     }
     
-    // Get unique card types
     getUniqueCardTypes() {
         const cardTypes = new Set();
         
@@ -331,7 +313,6 @@ class DataSystem {
         return Array.from(cardTypes);
     }
     
-    // Validate card data
     validateCard(card) {
         if (!card || typeof card !== 'object') {
             return { isValid: false, errors: ['Card is not an object'] };
@@ -367,7 +348,6 @@ class DataSystem {
         };
     }
     
-    // Add a new card (for potential future use)
     addCard(card) {
         const validation = this.validateCard(card);
         
@@ -392,7 +372,6 @@ class DataSystem {
         return { success: true, card };
     }
     
-    // Update an existing card
     updateCard(id, updates) {
         const cardIndex = this.getCardIndex(id);
         
@@ -412,7 +391,6 @@ class DataSystem {
         return { success: true, card: this.cards[cardIndex] };
     }
     
-    // Remove a card
     removeCard(id) {
         const cardIndex = this.getCardIndex(id);
         
@@ -431,7 +409,6 @@ class DataSystem {
         return { success: true, card: removedCard };
     }
     
-    // Get statistics
     getStatistics() {
         const stats = {
             totalCards: this.cards.length,
@@ -459,12 +436,10 @@ class DataSystem {
         return stats;
     }
     
-    // Export data as JSON
     exportData() {
         return JSON.stringify({ cards: this.cards }, null, 2);
     }
     
-    // Import data from JSON
     importData(jsonString) {
         try {
             const data = JSON.parse(jsonString);

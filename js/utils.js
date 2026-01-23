@@ -5,6 +5,16 @@ class Utils {
         this.mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         this.touchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
         this.performance = window.performance && window.performance.now ? window.performance : Date;
+        
+        // Bind methods
+        this.handleTouchStart = this.handleTouchStart.bind(this);
+        this.handleTouchMove = this.handleTouchMove.bind(this);
+        this.handleTouchEnd = this.handleTouchEnd.bind(this);
+        this.handleMouseDown = this.handleMouseDown.bind(this);
+        this.handleMouseMove = this.handleMouseMove.bind(this);
+        this.handleMouseUp = this.handleMouseUp.bind(this);
+        
+        this.init();
     }
 
     init() {
@@ -170,6 +180,9 @@ class Utils {
         if (this.mobile) {
             count = Math.floor(count / 2);
         }
+        
+        // Clear existing particles
+        container.innerHTML = '';
         
         for (let i = 0; i < count; i++) {
             const particle = this.createElement('div', 'particle');
@@ -688,6 +701,133 @@ class Utils {
     truncate(text, length = 100) {
         if (text.length <= length) return text;
         return text.substr(0, length) + '...';
+    }
+
+    // Gallery swipe functions
+    handleTouchStart(e) {
+        if (!this.currentGallery || this.currentGallery.images.length <= 1) return;
+        
+        this.currentGallery.isSwiping = true;
+        this.currentGallery.swipeStartX = e.touches[0].clientX;
+        this.currentGallery.swipeEndX = this.currentGallery.swipeStartX;
+        
+        e.preventDefault();
+    }
+
+    handleTouchMove(e) {
+        if (!this.currentGallery || !this.currentGallery.isSwiping || this.currentGallery.images.length <= 1) return;
+        
+        this.currentGallery.swipeEndX = e.touches[0].clientX;
+        const diff = this.currentGallery.swipeStartX - this.currentGallery.swipeEndX;
+        
+        // Only prevent default if we're actually swiping horizontally
+        if (Math.abs(diff) > 10) {
+            e.preventDefault();
+        }
+    }
+
+    handleTouchEnd() {
+        if (!this.currentGallery || !this.currentGallery.isSwiping || this.currentGallery.images.length <= 1) return;
+        
+        const diff = this.currentGallery.swipeStartX - this.currentGallery.swipeEndX;
+        const absDiff = Math.abs(diff);
+        const threshold = 50;
+        
+        if (absDiff > threshold) {
+            if (diff > 0) {
+                if (this.currentGallery.next) this.currentGallery.next();
+            } else {
+                if (this.currentGallery.prev) this.currentGallery.prev();
+            }
+        }
+        
+        this.currentGallery.isSwiping = false;
+    }
+
+    handleMouseDown(e) {
+        if (!this.currentGallery || this.currentGallery.images.length <= 1) return;
+        
+        this.currentGallery.isSwiping = true;
+        this.currentGallery.swipeStartX = e.clientX;
+        this.currentGallery.swipeEndX = this.currentGallery.swipeStartX;
+        
+        e.preventDefault();
+    }
+
+    handleMouseMove(e) {
+        if (!this.currentGallery || !this.currentGallery.isSwiping || this.currentGallery.images.length <= 1) return;
+        
+        this.currentGallery.swipeEndX = e.clientX;
+    }
+
+    handleMouseUp() {
+        if (!this.currentGallery || !this.currentGallery.isSwiping || this.currentGallery.images.length <= 1) return;
+        
+        const diff = this.currentGallery.swipeStartX - this.currentGallery.swipeEndX;
+        const absDiff = Math.abs(diff);
+        const threshold = 50;
+        
+        if (absDiff > threshold) {
+            if (diff > 0) {
+                if (this.currentGallery.next) this.currentGallery.next();
+            } else {
+                if (this.currentGallery.prev) this.currentGallery.prev();
+            }
+        }
+        
+        this.currentGallery.isSwiping = false;
+    }
+
+    // Setup gallery swipe
+    setupGallerySwipe(galleryElement, nextCallback, prevCallback) {
+        if (!galleryElement) return;
+        
+        this.currentGallery = {
+            element: galleryElement,
+            next: nextCallback,
+            prev: prevCallback,
+            isSwiping: false,
+            swipeStartX: 0,
+            swipeEndX: 0,
+            images: []
+        };
+        
+        // Clear existing listeners
+        galleryElement.removeEventListener('touchstart', this.handleTouchStart);
+        galleryElement.removeEventListener('touchmove', this.handleTouchMove);
+        galleryElement.removeEventListener('touchend', this.handleTouchEnd);
+        galleryElement.removeEventListener('mousedown', this.handleMouseDown);
+        galleryElement.removeEventListener('mousemove', this.handleMouseMove);
+        galleryElement.removeEventListener('mouseup', this.handleMouseUp);
+        galleryElement.removeEventListener('mouseleave', () => {
+            if (this.currentGallery) this.currentGallery.isSwiping = false;
+        });
+        
+        // Add new listeners
+        galleryElement.addEventListener('touchstart', this.handleTouchStart, { passive: true });
+        galleryElement.addEventListener('touchmove', this.handleTouchMove, { passive: false });
+        galleryElement.addEventListener('touchend', this.handleTouchEnd, { passive: true });
+        galleryElement.addEventListener('mousedown', this.handleMouseDown);
+        galleryElement.addEventListener('mousemove', this.handleMouseMove);
+        galleryElement.addEventListener('mouseup', this.handleMouseUp);
+        galleryElement.addEventListener('mouseleave', () => {
+            if (this.currentGallery) this.currentGallery.isSwiping = false;
+        });
+    }
+
+    // Clean up gallery swipe
+    cleanupGallerySwipe() {
+        if (!this.currentGallery || !this.currentGallery.element) return;
+        
+        const element = this.currentGallery.element;
+        element.removeEventListener('touchstart', this.handleTouchStart);
+        element.removeEventListener('touchmove', this.handleTouchMove);
+        element.removeEventListener('touchend', this.handleTouchEnd);
+        element.removeEventListener('mousedown', this.handleMouseDown);
+        element.removeEventListener('mousemove', this.handleMouseMove);
+        element.removeEventListener('mouseup', this.handleMouseUp);
+        
+        this.currentGallery = null;
     }
 }
 
