@@ -29,6 +29,7 @@ class CardPage {
 
     // Audio state
     this.cardMusicUrl = null;
+    this.cardSongName = null;
     this.isCardMusicPlaying = false;
     this.cardMusicLoop = true;
 
@@ -81,7 +82,7 @@ class CardPage {
     audioSystem.addEventListener("pause", () => this.updatePlayPauseButton());
     audioSystem.addEventListener("resume", () => this.updatePlayPauseButton());
     audioSystem.addEventListener("trackchange", (data) => {
-      this.updateTrackInfo(data.track);
+      this.updateTrackInfo(data.track, data.name);
     });
     audioSystem.addEventListener("volumechange", (data) => {
       this.updateVolumeSlider(data.volume);
@@ -102,38 +103,23 @@ class CardPage {
     this.cardVolumeSlider.value = Math.round(volume * 100);
   }
   
-  updateTrackInfo(trackUrl) {
+  updateTrackInfo(trackUrl, trackName = null) {
     if (!this.cardTrackInfo || !trackUrl) return;
     
     if (trackUrl === this.cardMusicUrl) {
-      const card = this.currentCard;
-      const songName = card?.favorites?.songName;
-      let displayName = songName;
+      // This is the card's theme song
+      let displayName = this.cardSongName;
       
       if (!displayName) {
-        // Extract name from filename
-        displayName = trackUrl
-          .split("/")
-          .pop()
-          .replace(".mp3", "")
-          .replace("-theme", " Theme")
-          .replace(/_/g, " ")
-          .replace(/^\d+/, "")
-          .trim();
-
-        // Capitalize first letter of each word
-        displayName = displayName.replace(/\b\w/g, (l) => l.toUpperCase());
+        // Fallback to extracted name from audio system
+        displayName = trackName || "Theme Song";
       }
       
       this.cardTrackInfo.textContent = `Playing: ${displayName}`;
     } else {
-      // Ambient track
-      const trackName = trackUrl
-        .split("/")
-        .pop()
-        .replace(".mp3", "")
-        .replace("music", "Ambient Track ");
-      this.cardTrackInfo.textContent = trackName;
+      // This is an ambient track
+      const displayName = trackName || audioSystem.extractTrackName(trackUrl);
+      this.cardTrackInfo.textContent = displayName;
     }
   }
 
@@ -466,9 +452,9 @@ class CardPage {
       },
       {
         key: "song",
-        label: "Song File",
+        label: "Theme Song",
         icon: "fas fa-file-audio",
-        value: favorites.song ? "✓ Has song file" : "",
+        value: favorites.song ? "✓ Available" : "No theme song",
       },
       {
         key: "anime",
@@ -531,9 +517,9 @@ class CardPage {
           valueContent = `<div class="color-preview" style="background-color: ${field.value};"></div>`;
         }
 
-        // Special handling for song file
-        if (field.key === "song" && favorites.song) {
-          valueContent = `<small style="font-size: 0.8rem; opacity: 0.8;">${field.value}</small>`;
+        // Special handling for theme song
+        if (field.key === "song") {
+          valueContent = `<span style="font-size: 0.9rem; opacity: 0.8;">${field.value}</span>`;
         }
 
         item.innerHTML = `
@@ -731,8 +717,7 @@ class CardPage {
       // Error handling
       img.onerror = () => {
         console.error(`Failed to load gallery image: ${imageSrc}`);
-        img.src =
-          "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjMjUyNTNBIi8+CjxwYXRoIGQ9Ik0zNSAzNUMzOC44NjYgMzEuMTMzOSA0NC44NjYgMzEuMTMzOSA0OC44NjYgMzVDNTIuODY2IDM4Ljg2NiA1Mi44NjYgNDQuODY2IDUwIDQ4QzQ3LjEzMzkgNTEuMTMzOSA0MS4xMzM5IDUxLjEzMzkgMzggNDhDMzQuODY2IDQ0Ljg2NiAzNC44NjYgMzguODY2IDM1IDM1WiIgZmlsbD0iIzcGNUEwRiIvPgo8cGF0aCBkPSJNNjUgNjVINzVWNzVINjVWNjVaIiBmaWxsPSIjN0Y1QTBGIi8+Cjwvc3ZnPg==";
+        img.src = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjMjUyNTNBIi8+CjxwYXRoIGQ9Ik0zNSAzNUMzOC44NjYgMzEuMTMzOSA0NC44NjYgMzEuMTMzOSA0OC44NjYgMzVDNTIuODY2IDM4Ljg2NiA1Mi44NjYgNDQuODY2IDUwIDQ4QzQ3LjEzMzkgNTEuMTMzOSA0MS4xMzM5IDUxLjEzMzkgMzggNDhDMzQuODY2IDQ0Ljg2NiAzNC44NjYgMzguODY2IDM1IDM1WiIgZmlsbD0iIzcGNUEwRiIvPgo8cGF0aCBkPSJNNjUgNjVINzVWNzVINjVWNjVaIiBmaWxsPSIjN0Y1QTBGIi8+Cjwvc3ZnPg==";
         img.style.opacity = "0.5";
       };
 
@@ -971,17 +956,20 @@ class CardPage {
 
   handleCardMusic(card) {
     const songUrl = card.favorites?.song;
+    const songName = card.favorites?.songName || card.favorites?.song || "Theme Song";
+    
     this.cardMusicUrl = songUrl;
+    this.cardSongName = songName;
 
     if (!songUrl) {
       // No card-specific song
-      this.cardTrackInfo.textContent = "No theme song";
+      this.cardTrackInfo.textContent = "No theme song available";
       if (this.cardPlayPauseBtn) {
         this.cardPlayPauseBtn.disabled = true;
       }
       
-      // If we're on card page with no song, play ambient music
-      if (!audioSystem.isPlaying) {
+      // If we're on card page with no song, play ambient music if available
+      if (audioSystem.userInteracted && !audioSystem.isPlaying) {
         audioSystem.playRandomTrack();
       }
       return;
@@ -993,23 +981,7 @@ class CardPage {
     }
 
     // Set track info
-    let displayName = card.favorites?.songName;
-    if (!displayName) {
-      // Extract name from filename
-      displayName = songUrl
-        .split("/")
-        .pop()
-        .replace(".mp3", "")
-        .replace("-theme", " Theme")
-        .replace(/_/g, " ")
-        .replace(/^\d+/, "")
-        .trim();
-
-      // Capitalize first letter of each word
-      displayName = displayName.replace(/\b\w/g, (l) => l.toUpperCase());
-    }
-
-    this.cardTrackInfo.textContent = `Ready: ${displayName}`;
+    this.cardTrackInfo.textContent = `Ready: ${this.cardSongName}`;
     
     // If user has already interacted, start playing the card music
     if (audioSystem.userInteracted) {
@@ -1021,10 +993,15 @@ class CardPage {
   }
 
   async playCardMusic() {
-    if (!this.cardMusicUrl) return;
+    if (!this.cardMusicUrl) {
+      // If no card music, play ambient
+      await audioSystem.playRandomTrack();
+      return;
+    }
     
     try {
-      await audioSystem.playTrack(this.cardMusicUrl, true);
+      // Play the card's theme song with its name
+      await audioSystem.playTrack(this.cardMusicUrl, this.cardSongName, true);
       this.updatePlayPauseButton();
       
       // Set loop for card music
@@ -1034,16 +1011,21 @@ class CardPage {
     } catch (error) {
       console.error("Error playing card music:", error);
       this.cardTrackInfo.textContent = "Error loading song";
+      
+      // Fallback to ambient music
+      if (audioSystem.userInteracted) {
+        await audioSystem.playRandomTrack();
+      }
     }
   }
 
   stopCardMusic() {
-    // Stop current playback and switch to ambient
+    // Only stop if the current track is the card's theme song
     if (audioSystem.isPlaying && audioSystem.currentTrack === this.cardMusicUrl) {
       audioSystem.stop();
-      audioSystem.playRandomTrack();
+      this.cardMusicUrl = null;
+      this.cardSongName = null;
     }
-    this.cardMusicUrl = null;
   }
 
   toggleCardMusic() {
@@ -1062,8 +1044,12 @@ class CardPage {
       audioSystem.pause();
     } else {
       if (this.cardMusicUrl) {
-        // Resume card music
-        audioSystem.resume();
+        // Resume card music if we have it
+        if (audioSystem.currentTrack === this.cardMusicUrl) {
+          audioSystem.resume();
+        } else {
+          this.playCardMusic();
+        }
       } else {
         // Play ambient music
         audioSystem.playRandomTrack();

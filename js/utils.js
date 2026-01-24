@@ -914,6 +914,7 @@ class Utils {
       userInteracted: window.audioSystem.userInteracted || false,
       isPlaying: window.audioSystem.isPlaying || false,
       currentTrack: window.audioSystem.currentTrack || null,
+      currentTrackName: window.audioSystem.currentTrackName || "No track",
       volume: window.audioSystem.volume || 0,
       audioContextState: window.audioSystem.audioContext?.state || "none",
       isMobile: this.mobile,

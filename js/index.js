@@ -121,8 +121,8 @@ class LandingPage {
 
     // Update UI based on audio state
     audioSystem.addEventListener("trackchange", (data) => {
-      console.log("Track changed:", data.track);
-      this.updateTrackInfo(data.track);
+      console.log("Track changed:", data.track, "Name:", data.name);
+      this.updateTrackInfo(data.track, data.name);
     });
     
     audioSystem.addEventListener("mutechange", (data) => this.updateMuteButton(data.muted));
@@ -213,16 +213,12 @@ class LandingPage {
     this.volumeSlider.value = Math.round(volume * 100);
   }
 
-  updateTrackInfo(trackUrl) {
+  updateTrackInfo(trackUrl, trackName = null) {
     if (!this.currentTrackElement || !trackUrl) return;
 
-    // Extract track name from URL
-    const trackName = trackUrl
-      .split("/")
-      .pop()
-      .replace(".mp3", "")
-      .replace("music", "Ambient Track ");
-    this.currentTrackElement.textContent = trackName;
+    // Use the provided track name or extract from URL
+    const displayName = trackName || audioSystem.extractTrackName(trackUrl);
+    this.currentTrackElement.textContent = displayName;
   }
 
   updateCurrentTime() {

@@ -11,22 +11,19 @@ class AudioSystem {
     this.fadeDuration = 1500; // ms
     this.trackHistory = [];
     this.maxHistory = 10;
+    this.currentTrackName = "No track";
 
     // Mobile detection and interaction tracking
-    this.isMobile =
-      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent,
-      );
+    this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     this.userInteracted = false;
     this.autoStartAttempted = false;
     this.interactionListenersAdded = false;
 
     // Get audio element
-    this.audioElement =
-      document.getElementById("backgroundMusic") ||
-      document.getElementById("cardMusic") ||
-      document.querySelector("audio") ||
-      document.createElement("audio");
+    this.audioElement = document.getElementById("backgroundMusic") || 
+                       document.getElementById("cardMusic") || 
+                       document.querySelector("audio") || 
+                       document.createElement("audio");
 
     this.audioElement.crossOrigin = "anonymous";
     this.audioElement.loop = false;
@@ -47,8 +44,7 @@ class AudioSystem {
 
     // Create audio context if supported
     if (window.AudioContext || window.webkitAudioContext) {
-      const AudioContextClass =
-        window.AudioContext || window.webkitAudioContext;
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
       try {
         this.audioContext = new AudioContextClass();
 
@@ -59,10 +55,7 @@ class AudioSystem {
 
         this.setupAudioElement();
       } catch (error) {
-        console.warn(
-          "AudioContext not supported, using HTML5 audio only:",
-          error,
-        );
+        console.warn("AudioContext not supported, using HTML5 audio only:", error);
       }
     }
 
@@ -85,12 +78,7 @@ class AudioSystem {
     // Try to start audio if we have interaction
     this.attemptAutoStart();
 
-    console.log(
-      "AudioSystem initialized. Mobile:",
-      this.isMobile,
-      "Interacted:",
-      this.userInteracted,
-    );
+    console.log("AudioSystem initialized. Mobile:", this.isMobile, "Interacted:", this.userInteracted);
   }
 
   setupInteractionListeners() {
@@ -137,15 +125,11 @@ class AudioSystem {
     document.addEventListener("mousedown", resumeOnInteraction, options);
 
     // Also listen to specific play buttons
-    document.addEventListener(
-      "click",
-      (e) => {
-        if (e.target.closest("#playPauseBtn, #cardPlayPause, .music-btn")) {
-          resumeOnInteraction(e);
-        }
-      },
-      options,
-    );
+    document.addEventListener("click", (e) => {
+      if (e.target.closest("#playPauseBtn, #cardPlayPause, .music-btn")) {
+        resumeOnInteraction(e);
+      }
+    }, options);
   }
 
   setupMobileInteraction() {
@@ -213,10 +197,7 @@ class AudioSystem {
     if (this.isMobile && !this.userInteracted) {
       console.log("Mobile device - waiting for user interaction");
       setTimeout(() => {
-        if (
-          !this.userInteracted &&
-          !document.querySelector(".mobile-audio-overlay")
-        ) {
+        if (!this.userInteracted && !document.querySelector(".mobile-audio-overlay")) {
           this.setupMobileInteraction();
         }
       }, 1000);
@@ -237,9 +218,7 @@ class AudioSystem {
 
     // Create media element source
     try {
-      this.sourceNode = this.audioContext.createMediaElementSource(
-        this.audioElement,
-      );
+      this.sourceNode = this.audioContext.createMediaElementSource(this.audioElement);
       this.sourceNode.connect(this.gainNode);
     } catch (error) {
       console.warn("Could not create media element source:", error);
@@ -248,8 +227,7 @@ class AudioSystem {
 
   resumeAudioContext() {
     if (this.audioContext && this.audioContext.state === "suspended") {
-      this.audioContext
-        .resume()
+      this.audioContext.resume()
         .then(() => {
           console.log("AudioContext resumed successfully");
         })
@@ -261,16 +239,22 @@ class AudioSystem {
 
   // Get random track from available music
   getRandomTrack() {
-    const tracks = [];
-
-    // Check for available tracks (music1.mp3 to music10.mp3)
-    for (let i = 1; i <= 10; i++) {
-      tracks.push(`assets/music/music${i}.mp3`);
-    }
+    const tracks = [
+      { url: "assets/music/music1.mp3", name: "About You" },
+      { url: "assets/music/music2.mp3", name: "Digital Dreams" },
+      { url: "assets/music/music3.mp3", name: "Echoes of Memory" },
+      { url: "assets/music/music4.mp3", name: "Neon Reflections" },
+      { url: "assets/music/music5.mp3", name: "Silent Code" },
+      { url: "assets/music/music6.mp3", name: "Data Stream" },
+      { url: "assets/music/music7.mp3", name: "Virtual Horizon" },
+      { url: "assets/music/music8.mp3", name: "Cyber Lullaby" },
+      { url: "assets/music/music9.mp3", name: "Binary Waves" },
+      { url: "assets/music/music10.mp3", name: "Digital Oasis" }
+    ];
 
     // Filter out tracks from history to avoid repeats
-    const availableTracks = tracks.filter(
-      (track) => !this.trackHistory.includes(track),
+    const availableTracks = tracks.filter(track => 
+      !this.trackHistory.includes(track.url)
     );
 
     // If all tracks have been played recently, clear history
@@ -284,7 +268,7 @@ class AudioSystem {
     const selectedTrack = availableTracks[randomIndex];
 
     // Add to history
-    this.trackHistory.push(selectedTrack);
+    this.trackHistory.push(selectedTrack.url);
     if (this.trackHistory.length > this.maxHistory) {
       this.trackHistory.shift();
     }
@@ -294,17 +278,15 @@ class AudioSystem {
 
   // Play random track with fade in
   async playRandomTrack() {
-    console.log(
-      "playRandomTrack called. User interacted:",
-      this.userInteracted,
-    );
+    console.log("playRandomTrack called. User interacted:", this.userInteracted);
 
     // Check if mobile and no user interaction
     if (this.isMobile && !this.userInteracted) {
       console.log("Waiting for user interaction on mobile");
       const track = this.getRandomTrack();
-      this.currentTrack = track;
-      this.audioElement.src = track;
+      this.currentTrack = track.url;
+      this.currentTrackName = track.name;
+      this.audioElement.src = track.url;
 
       // Show mobile overlay if not already shown
       if (!document.querySelector(".mobile-audio-overlay")) {
@@ -321,17 +303,12 @@ class AudioSystem {
     }
 
     const track = this.getRandomTrack();
-    return await this.playTrack(track, true);
+    return await this.playTrack(track.url, track.name, true);
   }
 
-  // Play specific track
-  async playTrack(trackUrl, fadeIn = true) {
-    console.log(
-      "Playing track:",
-      trackUrl,
-      "User interacted:",
-      this.userInteracted,
-    );
+  // Play specific track with custom name
+  async playTrack(trackUrl, trackName = null, fadeIn = true) {
+    console.log("Playing track:", trackUrl, "with name:", trackName, "User interacted:", this.userInteracted);
 
     if (this.currentTrack === trackUrl && this.isPlaying) {
       console.log("Track already playing");
@@ -340,11 +317,9 @@ class AudioSystem {
 
     // Check if mobile and no user interaction
     if (this.isMobile && !this.userInteracted) {
-      console.log(
-        "Waiting for user interaction on mobile before playing:",
-        trackUrl,
-      );
+      console.log("Waiting for user interaction on mobile before playing:", trackUrl);
       this.currentTrack = trackUrl;
+      this.currentTrackName = trackName || this.extractTrackName(trackUrl);
       this.audioElement.src = trackUrl;
 
       // Show mobile overlay if not already shown
@@ -359,6 +334,7 @@ class AudioSystem {
     if (!this.userInteracted) {
       console.log("No user interaction, cannot play track");
       this.currentTrack = trackUrl;
+      this.currentTrackName = trackName || this.extractTrackName(trackUrl);
       this.audioElement.src = trackUrl;
       return false;
     }
@@ -371,6 +347,7 @@ class AudioSystem {
 
       // Set new track
       this.currentTrack = trackUrl;
+      this.currentTrackName = trackName || this.extractTrackName(trackUrl);
       this.audioElement.src = trackUrl;
 
       // Load the new track
@@ -379,10 +356,7 @@ class AudioSystem {
       // Wait for canplaythrough with timeout
       const playPromise = new Promise((resolve, reject) => {
         const canPlayHandler = () => {
-          this.audioElement.removeEventListener(
-            "canplaythrough",
-            canPlayHandler,
-          );
+          this.audioElement.removeEventListener("canplaythrough", canPlayHandler);
           console.log("Track can play through:", trackUrl);
           resolve();
         };
@@ -397,10 +371,7 @@ class AudioSystem {
 
         // Fallback timeout
         setTimeout(() => {
-          this.audioElement.removeEventListener(
-            "canplaythrough",
-            canPlayHandler,
-          );
+          this.audioElement.removeEventListener("canplaythrough", canPlayHandler);
           this.audioElement.removeEventListener("error", errorHandler);
           console.log("Track load timeout, attempting to play anyway");
           resolve();
@@ -419,9 +390,12 @@ class AudioSystem {
       }
 
       // Dispatch custom event
-      this.dispatchEvent("trackchange", { track: trackUrl });
+      this.dispatchEvent("trackchange", { 
+        track: trackUrl, 
+        name: this.currentTrackName 
+      });
 
-      console.log("Track playing successfully:", trackUrl);
+      console.log("Track playing successfully:", trackUrl, "Name:", this.currentTrackName);
       return true;
     } catch (error) {
       console.error("Error playing track:", error);
@@ -437,6 +411,41 @@ class AudioSystem {
 
       return false;
     }
+  }
+
+  // Extract track name from URL
+  extractTrackName(trackUrl) {
+    if (!trackUrl) return "Unknown Track";
+    
+    const filename = trackUrl.split("/").pop().replace(".mp3", "");
+    
+    // Handle theme songs
+    if (trackUrl.includes("-theme")) {
+      return filename.replace("-theme", " Theme").replace(/_/g, " ");
+    }
+    
+    // Handle ambient tracks
+    if (filename.startsWith("music")) {
+      const trackNum = filename.replace("music", "");
+      const trackNames = {
+        "1": "Atmospheric Journey",
+        "2": "Digital Dreams",
+        "3": "Echoes of Memory",
+        "4": "Neon Reflections",
+        "5": "Silent Code",
+        "6": "Data Stream",
+        "7": "Virtual Horizon",
+        "8": "Cyber Lullaby",
+        "9": "Binary Waves",
+        "10": "Digital Oasis"
+      };
+      return trackNames[trackNum] || `Ambient Track ${trackNum}`;
+    }
+    
+    // Default: format filename nicely
+    return filename
+      .replace(/[-_]/g, " ")
+      .replace(/\b\w/g, l => l.toUpperCase());
   }
 
   // Fade in volume
@@ -476,7 +485,7 @@ class AudioSystem {
       this.gainNode.gain.setValueAtTime(0, currentTime);
       this.gainNode.gain.linearRampToValueAtTime(
         this.volume,
-        currentTime + this.fadeDuration / 1000,
+        currentTime + this.fadeDuration / 1000
       );
     } catch (error) {
       console.error("Error in AudioContext fadeIn:", error);
@@ -511,7 +520,7 @@ class AudioSystem {
       this.gainNode.gain.setValueAtTime(this.volume, currentTime);
       this.gainNode.gain.linearRampToValueAtTime(
         0,
-        currentTime + this.fadeDuration / 1000,
+        currentTime + this.fadeDuration / 1000
       );
 
       setTimeout(() => {
@@ -535,6 +544,7 @@ class AudioSystem {
   async stop() {
     await this.fadeOut();
     this.currentTrack = null;
+    this.currentTrackName = "No track";
     this.dispatchEvent("stop");
   }
 
@@ -549,12 +559,7 @@ class AudioSystem {
 
   // Resume playback
   async resume() {
-    console.log(
-      "Resume called. isPlaying:",
-      this.isPlaying,
-      "hasTrack:",
-      !!this.currentTrack,
-    );
+    console.log("Resume called. isPlaying:", this.isPlaying, "hasTrack:", !!this.currentTrack);
 
     if (this.isPlaying || !this.currentTrack) return;
 
@@ -625,10 +630,22 @@ class AudioSystem {
     await this.playRandomTrack();
   }
 
+  // Get current track info
+  getCurrentTrackInfo() {
+    return {
+      url: this.currentTrack,
+      name: this.currentTrackName,
+      isPlaying: this.isPlaying
+    };
+  }
+
   // Event handling
   onTrackEnd() {
     this.isPlaying = false;
-    this.dispatchEvent("trackend", { track: this.currentTrack });
+    this.dispatchEvent("trackend", { 
+      track: this.currentTrack,
+      name: this.currentTrackName 
+    });
 
     // Auto-play next track after a delay
     setTimeout(() => {
