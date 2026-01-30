@@ -5,8 +5,8 @@
       "coreIdentity": {
         "firstName": "Biju",
         "lastName": "Maharjan",
-        "nickname": "Night Thinker",
-        "username": "biju.exe",
+        "nickname": "BOMB BOMB",
+        "username": "bijusayswaddup",
         "dateOfBirth": "1999-04-14",
         "age": 26,
         "gender": "Male",
@@ -18,43 +18,75 @@
         "cardType": "Hero",
         "organization": "Joint",
         "role": "Strategist & Developer",
-        "issueDate": "2024-01-01",
-        "expiryDate": "2034-01-01"
+        "issueDate": "2026-01-01",
+        "expiryDate": "9999-01-01"
       },
       "personalityTraits": {
         "personalityType": "Ambivert (INTJ)",
-        "strengths": ["Creative", "Loyal", "Strategic"],
-        "weaknesses": ["Overthinking", "Emotional Attachment"],
-        "habits": ["Late-night thinking", "Music looping"],
-        "petPeeves": ["Dishonesty", "Slow Wi-Fi"]
+        "strengths": [
+          "Creative",
+          "Loyal",
+          "Strategic"
+        ],
+        "weaknesses": [
+          "Overthinking",
+          "Emotional Attachment"
+        ],
+        "habits": [
+          "Late-night Gaming",
+          "Coding",
+          "Music looping",
+          "Event Planning",
+          "Cafe Hunting"
+        ],
+        "petPeeves": [
+          "Dishonesty",
+          "Slow Wi-Fi",
+          "Noob Teams",
+          "Game Crashing"
+        ]
       },
       "likesDislikes": {
         "likes": [
           "Quiet nights",
           "Rainy weather",
           "Deep conversations",
-          "Anime marathons"
+          "Anime marathons",
+          "MLBB"
         ],
-        "dislikes": ["Fake people", "Loud crowds", "Being misunderstood"]
+        "dislikes": [
+          "Fake people",
+          "Loud crowds",
+          "Being misunderstood"
+        ]
       },
       "favorites": {
         "musicGenre": "Lo-fi / Indie",
         "artist": "RADWIMPS",
         "song": "assets/music/biju-theme.mp3",
+        "songName": "見つけられるために(Built to Be Found)",
         "anime": "Naruto",
         "animeCharacter": "Minato Namikaze",
         "movieSeries": "Interstellar",
         "game": "MLBB",
         "food": "Momo",
-        "drink": "Coffee",
+        "drink": "HOT CHOCOLATE",
         "color": "#7f5af0",
         "quote": "Stay soft, think sharp."
       },
       "lifestyle": {
-        "hobbies": ["Coding", "Writing", "Gaming"],
-        "skills": ["Leadership", "Design", "Strategy"],
+        "hobbies": [
+          "Coding",
+          "Writing",
+          "Gaming"
+        ],
+        "skills": [
+          "Leadership",
+          "Design",
+          "Strategy"
+        ],
         "dreamDestination": "Japan",
-        "biggestFear": "Losing meaningful connections",
+        "biggestFear": "Failing In Life",
         "biggestMotivation": "Creating something that lasts"
       },
       "digitalSocial": {
@@ -62,9 +94,9 @@
         "socialHandle": "@bijumaharjan"
       },
       "storyMode": {
-        "lifeMotto": "Keep moving forward, even quietly.",
-        "makesHappy": "Peaceful nights and honest bonds",
-        "breaksThem": "Betrayal",
+        "lifeMotto": "Keep moving forward, even if you have to be a loud nobody or may be a quietl somebody.",
+        "makesHappy": "EVERYTHING LITTLE THING",
+        "breaksThem": "LOOSE STREAK",
         "protectAtAllCosts": "People he loves",
         "secretSoftSpot": "Handwritten letters"
       },
@@ -75,7 +107,12 @@
           "assets/images/gallery/biju2.jpg",
           "assets/images/gallery/biju3.jpg",
           "assets/images/gallery/biju4.jpg",
-          "assets/images/gallery/biju5.jpg"
+          "assets/images/gallery/biju5.jpg",
+          "assets/images/gallery/biju6.jpg",
+          "assets/images/gallery/biju7.jpg",
+          "assets/images/gallery/biju8.jpg",
+          "assets/images/gallery/biju9.jpg",
+          "assets/images/gallery/biju10.jpg"
         ]
       }
     },
@@ -102,14 +139,37 @@
       },
       "personalityTraits": {
         "personalityType": "Ambivert",
-        "strengths": ["Loyal", "Trustworthy", "Cheerful", "Creative"],
-        "weaknesses": ["Overthinking", "Social Anxiety", "Insecure"],
-        "habits": ["Music while working", "Checking social media constantly"],
-        "petPeeves": ["Copying others", "Being misunderstood"]
+        "strengths": [
+          "Loyal",
+          "Trustworthy",
+          "Cheerful",
+          "Creative"
+        ],
+        "weaknesses": [
+          "Overthinking",
+          "Social Anxiety",
+          "Insecure"
+        ],
+        "habits": [
+          "Music while working",
+          "Checking social media constantly"
+        ],
+        "petPeeves": [
+          "Copying others",
+          "Being misunderstood"
+        ]
       },
       "likesDislikes": {
-        "likes": ["Nature", "Music", "Photography"],
-        "dislikes": ["Crowds", "College", "Betrayal"]
+        "likes": [
+          "Nature",
+          "Music",
+          "Photography"
+        ],
+        "dislikes": [
+          "Crowds",
+          "College",
+          "Betrayal"
+        ]
       },
       "favorites": {
         "musicGenre": "All genres",
@@ -126,8 +186,17 @@
         "quote": "Work smart not hard"
       },
       "lifestyle": {
-        "hobbies": ["Photography", "Writing", "Singing", "Dancing"],
-        "skills": ["Singing", "Creative writing", "Emotional support"],
+        "hobbies": [
+          "Photography",
+          "Writing",
+          "Singing",
+          "Dancing"
+        ],
+        "skills": [
+          "Singing",
+          "Creative writing",
+          "Emotional support"
+        ],
         "dreamDestination": "Mount Everest",
         "biggestFear": "Losing loved ones",
         "biggestMotivation": "Personal growth"
@@ -177,14 +246,36 @@
       },
       "personalityTraits": {
         "personalityType": "Ambivert",
-        "strengths": ["Loyal", "Patient", "Understanding", "Problem-solving"],
-        "weaknesses": ["Social Anxiety", "Overthinking"],
-        "habits": ["Music while working", "Staying up late"],
-        "petPeeves": ["Loud chewing", "Crowded places", "Slow internet"]
+        "strengths": [
+          "Loyal",
+          "Patient",
+          "Understanding",
+          "Problem-solving"
+        ],
+        "weaknesses": [
+          "Social Anxiety",
+          "Overthinking"
+        ],
+        "habits": [
+          "Music while working",
+          "Staying up late"
+        ],
+        "petPeeves": [
+          "Loud chewing",
+          "Crowded places",
+          "Slow internet"
+        ]
       },
       "likesDislikes": {
-        "likes": ["Cloudy weather", "Late night deep conversations"],
-        "dislikes": ["Dishonesty", "Winter", "Being misunderstood"]
+        "likes": [
+          "Cloudy weather",
+          "Late night deep conversations"
+        ],
+        "dislikes": [
+          "Dishonesty",
+          "Winter",
+          "Being misunderstood"
+        ]
       },
       "favorites": {
         "musicGenre": "Synthwave",
@@ -201,8 +292,15 @@
         "quote": "The best way out is through"
       },
       "lifestyle": {
-        "hobbies": ["Makeup artistry", "Listening to music"],
-        "skills": ["Cooking", "Makeup", "Problem-solving"],
+        "hobbies": [
+          "Makeup artistry",
+          "Listening to music"
+        ],
+        "skills": [
+          "Cooking",
+          "Makeup",
+          "Problem-solving"
+        ],
         "dreamDestination": "New Zealand",
         "biggestFear": "Heights",
         "biggestMotivation": "Personal growth"
@@ -250,14 +348,37 @@
       },
       "personalityTraits": {
         "personalityType": "Strategic Thinker",
-        "strengths": ["Loyal", "Patient", "Strategic", "Logical"],
-        "weaknesses": ["Overthinking", "Anxiety", "Emotional sensitivity"],
-        "habits": ["Listening to music", "Late night thinking"],
-        "petPeeves": ["Betrayal", "People breaking promises"]
+        "strengths": [
+          "Loyal",
+          "Patient",
+          "Strategic",
+          "Logical"
+        ],
+        "weaknesses": [
+          "Overthinking",
+          "Anxiety",
+          "Emotional sensitivity"
+        ],
+        "habits": [
+          "Listening to music",
+          "Late night thinking"
+        ],
+        "petPeeves": [
+          "Betrayal",
+          "People breaking promises"
+        ]
       },
       "likesDislikes": {
-        "likes": ["Deep conversations", "Anime", "Gaming"],
-        "dislikes": ["Dishonesty", "Liars", "Crowds"]
+        "likes": [
+          "Deep conversations",
+          "Anime",
+          "Gaming"
+        ],
+        "dislikes": [
+          "Dishonesty",
+          "Liars",
+          "Crowds"
+        ]
       },
       "favorites": {
         "musicGenre": "Lo-fi, Pop, J-pop",
@@ -274,7 +395,11 @@
         "quote": "In a world full of rudeness be the kindness"
       },
       "lifestyle": {
-        "hobbies": ["Gaming", "Reading", "Singing"],
+        "hobbies": [
+          "Gaming",
+          "Reading",
+          "Singing"
+        ],
         "skills": [
           "Problem-solving",
           "Mental health support",
@@ -329,14 +454,35 @@
       },
       "personalityTraits": {
         "personalityType": "Extrovert with close people",
-        "strengths": ["Creative", "Compassionate", "Talkative"],
-        "weaknesses": ["Panics easily", "Emotional"],
-        "habits": ["Diary writing", "Being talkative"],
-        "petPeeves": ["Unwanted touching", "Lies"]
+        "strengths": [
+          "Creative",
+          "Compassionate",
+          "Talkative"
+        ],
+        "weaknesses": [
+          "Panics easily",
+          "Emotional"
+        ],
+        "habits": [
+          "Diary writing",
+          "Being talkative"
+        ],
+        "petPeeves": [
+          "Unwanted touching",
+          "Lies"
+        ]
       },
       "likesDislikes": {
-        "likes": ["Poetry", "Traveling", "Reading"],
-        "dislikes": ["Lies", "Heights", "Dishonesty"]
+        "likes": [
+          "Poetry",
+          "Traveling",
+          "Reading"
+        ],
+        "dislikes": [
+          "Lies",
+          "Heights",
+          "Dishonesty"
+        ]
       },
       "favorites": {
         "musicGenre": "90s music",
@@ -353,8 +499,17 @@
         "quote": "Don't give up, keep moving forward"
       },
       "lifestyle": {
-        "hobbies": ["Traveling", "Writing", "Reading", "Sleeping"],
-        "skills": ["Creative writing", "Comforting people", "Sleeping"],
+        "hobbies": [
+          "Traveling",
+          "Writing",
+          "Reading",
+          "Sleeping"
+        ],
+        "skills": [
+          "Creative writing",
+          "Comforting people",
+          "Sleeping"
+        ],
         "dreamDestination": "Japan",
         "biggestFear": "Heights",
         "biggestMotivation": "Personal development and family"
@@ -402,14 +557,39 @@
       },
       "personalityTraits": {
         "personalityType": "Bold & Creative",
-        "strengths": ["Loyal", "Humble", "Patient", "Artistic"],
-        "weaknesses": ["Overthinking", "Anxiety"],
-        "habits": ["Drawing", "Sketching", "Baking", "Cooking"],
-        "petPeeves": ["Slow internet", "Loud noises"]
+        "strengths": [
+          "Loyal",
+          "Humble",
+          "Patient",
+          "Artistic"
+        ],
+        "weaknesses": [
+          "Overthinking",
+          "Anxiety"
+        ],
+        "habits": [
+          "Drawing",
+          "Sketching",
+          "Baking",
+          "Cooking"
+        ],
+        "petPeeves": [
+          "Slow internet",
+          "Loud noises"
+        ]
       },
       "likesDislikes": {
-        "likes": ["Creating art", "Sleeping", "Eating", "Shopping"],
-        "dislikes": ["Slow internet", "Bad smells", "Dairy products"]
+        "likes": [
+          "Creating art",
+          "Sleeping",
+          "Eating",
+          "Shopping"
+        ],
+        "dislikes": [
+          "Slow internet",
+          "Bad smells",
+          "Dairy products"
+        ]
       },
       "favorites": {
         "musicGenre": "Classical, Pop, Hiphop, Rap",
@@ -426,8 +606,17 @@
         "quote": "Tit for tat"
       },
       "lifestyle": {
-        "hobbies": ["Sleeping", "Gaming", "Drawing", "Baking"],
-        "skills": ["Drawing", "Cooking", "Art creation"],
+        "hobbies": [
+          "Sleeping",
+          "Gaming",
+          "Drawing",
+          "Baking"
+        ],
+        "skills": [
+          "Drawing",
+          "Cooking",
+          "Art creation"
+        ],
         "dreamDestination": "Egypt",
         "biggestFear": "Being worthless or a burden",
         "biggestMotivation": "Helping people and creating art"
@@ -475,14 +664,34 @@
       },
       "personalityTraits": {
         "personalityType": "Reserved & Observant",
-        "strengths": ["Strict", "Focused", "Independent"],
-        "weaknesses": ["Sleepy", "Withdrawn"],
-        "habits": ["Sleeping", "Quiet observation"],
-        "petPeeves": ["Disturbances during sleep"]
+        "strengths": [
+          "Strict",
+          "Focused",
+          "Independent"
+        ],
+        "weaknesses": [
+          "Sleepy",
+          "Withdrawn"
+        ],
+        "habits": [
+          "Sleeping",
+          "Quiet observation"
+        ],
+        "petPeeves": [
+          "Disturbances during sleep"
+        ]
       },
       "likesDislikes": {
-        "likes": ["Sleeping", "Peace and quiet", "Gaming"],
-        "dislikes": ["Being awake", "Noise", "Interruptions"]
+        "likes": [
+          "Sleeping",
+          "Peace and quiet",
+          "Gaming"
+        ],
+        "dislikes": [
+          "Being awake",
+          "Noise",
+          "Interruptions"
+        ]
       },
       "favorites": {
         "musicGenre": "Ambient & Lullabies",
@@ -499,8 +708,16 @@
         "quote": "Move quietly"
       },
       "lifestyle": {
-        "hobbies": ["Gaming", "Sleeping", "Writing"],
-        "skills": ["Writing", "Observation", "Resting"],
+        "hobbies": [
+          "Gaming",
+          "Sleeping",
+          "Writing"
+        ],
+        "skills": [
+          "Writing",
+          "Observation",
+          "Resting"
+        ],
         "dreamDestination": "USA",
         "biggestFear": "Insomnia",
         "biggestMotivation": "Personal peace and comfort"
@@ -547,14 +764,35 @@
       },
       "personalityTraits": {
         "personalityType": "Ambivert",
-        "strengths": ["Patient", "Kind", "Observant"],
-        "weaknesses": ["Overthinking", "Anxious"],
-        "habits": ["Listening to music while working"],
-        "petPeeves": ["Slow internet", "Dishonesty"]
+        "strengths": [
+          "Patient",
+          "Kind",
+          "Observant"
+        ],
+        "weaknesses": [
+          "Overthinking",
+          "Anxious"
+        ],
+        "habits": [
+          "Listening to music while working"
+        ],
+        "petPeeves": [
+          "Slow internet",
+          "Dishonesty"
+        ]
       },
       "likesDislikes": {
-        "likes": ["Anime", "Novels", "Flowers", "Music"],
-        "dislikes": ["Crowds", "Liars", "Dishonesty"]
+        "likes": [
+          "Anime",
+          "Novels",
+          "Flowers",
+          "Music"
+        ],
+        "dislikes": [
+          "Crowds",
+          "Liars",
+          "Dishonesty"
+        ]
       },
       "favorites": {
         "musicGenre": "Alternative Rock",
@@ -571,8 +809,16 @@
         "quote": "Life is all about the next step"
       },
       "lifestyle": {
-        "hobbies": ["Singing", "Reading", "Cooking"],
-        "skills": ["Cooking", "Singing", "Strategic thinking"],
+        "hobbies": [
+          "Singing",
+          "Reading",
+          "Cooking"
+        ],
+        "skills": [
+          "Cooking",
+          "Singing",
+          "Strategic thinking"
+        ],
         "dreamDestination": "Mountains",
         "biggestFear": "Failure",
         "biggestMotivation": "Being kind and helpful"
@@ -622,13 +868,32 @@
       },
       "personalityTraits": {
         "personalityType": "Ambivert",
-        "strengths": ["Creative", "Patient", "Observant"],
-        "weaknesses": ["Social anxiety", "Overthinking"],
-        "habits": ["Gaming", "Crafting", "Yapping"],
-        "petPeeves": ["Loud chewing", "Slow internet", "Bad teammates"]
+        "strengths": [
+          "Creative",
+          "Patient",
+          "Observant"
+        ],
+        "weaknesses": [
+          "Social anxiety",
+          "Overthinking"
+        ],
+        "habits": [
+          "Gaming",
+          "Crafting",
+          "Yapping"
+        ],
+        "petPeeves": [
+          "Loud chewing",
+          "Slow internet",
+          "Bad teammates"
+        ]
       },
       "likesDislikes": {
-        "likes": ["Rainy weather", "Deep conversations", "Beautiful scenery"],
+        "likes": [
+          "Rainy weather",
+          "Deep conversations",
+          "Beautiful scenery"
+        ],
         "dislikes": [
           "Energy mismatches",
           "Boastful people",
@@ -650,8 +915,16 @@
         "quote": "Be selfish, love yourself more"
       },
       "lifestyle": {
-        "hobbies": ["Gaming", "Flower making", "Crafting"],
-        "skills": ["Cooking", "Problem-solving", "Communication"],
+        "hobbies": [
+          "Gaming",
+          "Flower making",
+          "Crafting"
+        ],
+        "skills": [
+          "Cooking",
+          "Problem-solving",
+          "Communication"
+        ],
         "dreamDestination": "Japan (Inazuma inspired)",
         "biggestFear": "Being abandoned or misunderstood",
         "biggestMotivation": "Self-love and personal growth"
@@ -701,14 +974,35 @@
       },
       "personalityTraits": {
         "personalityType": "Ambivert",
-        "strengths": ["Charismatic", "Patient", "Loyal"],
-        "weaknesses": ["Social Anxiety", "Doom Scrolling"],
-        "habits": ["Listening to bhajans while working"],
-        "petPeeves": ["People invading personal space", "Emotional immaturity"]
+        "strengths": [
+          "Charismatic",
+          "Patient",
+          "Loyal"
+        ],
+        "weaknesses": [
+          "Social Anxiety",
+          "Doom Scrolling"
+        ],
+        "habits": [
+          "Listening to bhajans while working"
+        ],
+        "petPeeves": [
+          "People invading personal space",
+          "Emotional immaturity"
+        ]
       },
       "likesDislikes": {
-        "likes": ["Fluffy things", "Pets", "Family", "Quiet spaces"],
-        "dislikes": ["Crowds", "Loud music", "Liars"]
+        "likes": [
+          "Fluffy things",
+          "Pets",
+          "Family",
+          "Quiet spaces"
+        ],
+        "dislikes": [
+          "Crowds",
+          "Loud music",
+          "Liars"
+        ]
       },
       "favorites": {
         "musicGenre": "R&B",
@@ -724,8 +1018,17 @@
         "quote": "Peace comes from within. Do not seek it without."
       },
       "lifestyle": {
-        "hobbies": ["Painting", "Cooking", "Baking"],
-        "skills": ["Cooking", "Baking", "Writing", "Sports"],
+        "hobbies": [
+          "Painting",
+          "Cooking",
+          "Baking"
+        ],
+        "skills": [
+          "Cooking",
+          "Baking",
+          "Writing",
+          "Sports"
+        ],
         "dreamDestination": "Tibet",
         "biggestFear": "Heights and Darkness",
         "biggestMotivation": "Family and sister"
@@ -775,14 +1078,32 @@
       },
       "personalityTraits": {
         "personalityType": "Introvert",
-        "strengths": ["Loyal", "Observant"],
-        "weaknesses": ["Overthinking"],
-        "habits": ["Smoking", "Late-night gaming"],
-        "petPeeves": ["Dark system teams", "Disorganization"]
+        "strengths": [
+          "Loyal",
+          "Observant"
+        ],
+        "weaknesses": [
+          "Overthinking"
+        ],
+        "habits": [
+          "Smoking",
+          "Late-night gaming"
+        ],
+        "petPeeves": [
+          "Dark system teams",
+          "Disorganization"
+        ]
       },
       "likesDislikes": {
-        "likes": ["Anime", "Games", "Quiet time"],
-        "dislikes": ["Waking up early", "Crowds"]
+        "likes": [
+          "Anime",
+          "Games",
+          "Quiet time"
+        ],
+        "dislikes": [
+          "Waking up early",
+          "Crowds"
+        ]
       },
       "favorites": {
         "musicGenre": "Lo-fi, Metal",
@@ -798,8 +1119,14 @@
         "quote": "Keep moving forward"
       },
       "lifestyle": {
-        "hobbies": ["Photography", "Gaming"],
-        "skills": ["Gaming", "Observation"],
+        "hobbies": [
+          "Photography",
+          "Gaming"
+        ],
+        "skills": [
+          "Gaming",
+          "Observation"
+        ],
         "dreamDestination": "Japan",
         "biggestFear": "Loneliness",
         "biggestMotivation": "Helping others"
@@ -849,14 +1176,32 @@
       },
       "personalityTraits": {
         "personalityType": "Ambivert",
-        "strengths": ["Loyal", "Creative"],
-        "weaknesses": ["Anger issues"],
-        "habits": ["Music everywhere", "Gaming"],
-        "petPeeves": ["Fake people", "Dishonesty"]
+        "strengths": [
+          "Loyal",
+          "Creative"
+        ],
+        "weaknesses": [
+          "Anger issues"
+        ],
+        "habits": [
+          "Music everywhere",
+          "Gaming"
+        ],
+        "petPeeves": [
+          "Fake people",
+          "Dishonesty"
+        ]
       },
       "likesDislikes": {
-        "likes": ["K-dramas", "Music", "Gaming"],
-        "dislikes": ["Fake people", "Crowds"]
+        "likes": [
+          "K-dramas",
+          "Music",
+          "Gaming"
+        ],
+        "dislikes": [
+          "Fake people",
+          "Crowds"
+        ]
       },
       "favorites": {
         "musicGenre": "Indie Pop",
@@ -872,8 +1217,15 @@
         "quote": "Be yourself"
       },
       "lifestyle": {
-        "hobbies": ["Gaming", "Sleeping", "Listening to music"],
-        "skills": ["Writing", "Observation"],
+        "hobbies": [
+          "Gaming",
+          "Sleeping",
+          "Listening to music"
+        ],
+        "skills": [
+          "Writing",
+          "Observation"
+        ],
         "dreamDestination": "New York",
         "biggestFear": "Fake people",
         "biggestMotivation": "Helping others"
@@ -928,14 +1280,35 @@
       },
       "personalityTraits": {
         "personalityType": "Ambivert",
-        "strengths": ["Creative", "Strong", "Loyal"],
-        "weaknesses": ["Procrastination", "Social Anxiety"],
-        "habits": ["Music while working", "Gaming", "Sleeping"],
-        "petPeeves": ["Slow internet", "Being late"]
+        "strengths": [
+          "Creative",
+          "Strong",
+          "Loyal"
+        ],
+        "weaknesses": [
+          "Procrastination",
+          "Social Anxiety"
+        ],
+        "habits": [
+          "Music while working",
+          "Gaming",
+          "Sleeping"
+        ],
+        "petPeeves": [
+          "Slow internet",
+          "Being late"
+        ]
       },
       "likesDislikes": {
-        "likes": ["Rainy weather", "Games", "Quiet time"],
-        "dislikes": ["Waking up early", "Dishonesty"]
+        "likes": [
+          "Rainy weather",
+          "Games",
+          "Quiet time"
+        ],
+        "dislikes": [
+          "Waking up early",
+          "Dishonesty"
+        ]
       },
       "favorites": {
         "musicGenre": "Lo-fi",
@@ -951,8 +1324,15 @@
         "quote": "Do everything yourself nobody cares about you"
       },
       "lifestyle": {
-        "hobbies": ["Gaming", "Music"],
-        "skills": ["Cooking", "Writing", "Design"],
+        "hobbies": [
+          "Gaming",
+          "Music"
+        ],
+        "skills": [
+          "Cooking",
+          "Writing",
+          "Design"
+        ],
         "dreamDestination": "Japan",
         "biggestFear": "Darkness",
         "biggestMotivation": "Personal growth"
@@ -1002,8 +1382,17 @@
       },
       "personalityTraits": {
         "personalityType": "INTJ",
-        "strengths": ["Patient", "Loyal", "Sensitive", "Family-oriented"],
-        "weaknesses": ["Social Anxiety", "Overthinking", "Enchlophobia"],
+        "strengths": [
+          "Patient",
+          "Loyal",
+          "Sensitive",
+          "Family-oriented"
+        ],
+        "weaknesses": [
+          "Social Anxiety",
+          "Overthinking",
+          "Enchlophobia"
+        ],
         "habits": [
           "Morning coffee",
           "Music while writing",
@@ -1023,7 +1412,12 @@
           "Peaceful environments",
           "Coffee shops"
         ],
-        "dislikes": ["Crowds", "Dishonesty", "Waking up early", "Hot weather"]
+        "dislikes": [
+          "Crowds",
+          "Dishonesty",
+          "Waking up early",
+          "Hot weather"
+        ]
       },
       "favorites": {
         "musicGenre": "Pop, Classical, Electronic Metal",
@@ -1039,8 +1433,17 @@
         "quote": "Laugh as much as you breathe and love as long as you live."
       },
       "lifestyle": {
-        "hobbies": ["Photography", "Gaming", "Eating", "Reading manga"],
-        "skills": ["Writing", "Cooking", "Gaming"],
+        "hobbies": [
+          "Photography",
+          "Gaming",
+          "Eating",
+          "Reading manga"
+        ],
+        "skills": [
+          "Writing",
+          "Cooking",
+          "Gaming"
+        ],
         "dreamDestination": "China",
         "biggestFear": "Failure and loneliness",
         "biggestMotivation": "Helping others and personal growth"
@@ -1090,14 +1493,31 @@
       },
       "personalityTraits": {
         "personalityType": "Ambivert",
-        "strengths": ["Creative", "Loyal", "Friendly"],
-        "weaknesses": ["Overthinking", "Self-doubt"],
-        "habits": ["Music while working"],
-        "petPeeves": ["People pretending to be nice"]
+        "strengths": [
+          "Creative",
+          "Loyal",
+          "Friendly"
+        ],
+        "weaknesses": [
+          "Overthinking",
+          "Self-doubt"
+        ],
+        "habits": [
+          "Music while working"
+        ],
+        "petPeeves": [
+          "People pretending to be nice"
+        ]
       },
       "likesDislikes": {
-        "likes": ["Chinese dramas", "Friend gatherings"],
-        "dislikes": ["Winter", "Waking up early"]
+        "likes": [
+          "Chinese dramas",
+          "Friend gatherings"
+        ],
+        "dislikes": [
+          "Winter",
+          "Waking up early"
+        ]
       },
       "favorites": {
         "musicGenre": "Indie Pop, R&B",
@@ -1113,8 +1533,15 @@
         "quote": "It is what it is"
       },
       "lifestyle": {
-        "hobbies": ["Cooking", "Relaxing"],
-        "skills": ["Cooking", "Cleaning", "Socializing"],
+        "hobbies": [
+          "Cooking",
+          "Relaxing"
+        ],
+        "skills": [
+          "Cooking",
+          "Cleaning",
+          "Socializing"
+        ],
         "dreamDestination": "Switzerland",
         "biggestFear": "Failure",
         "biggestMotivation": "Staying busy and productive"
@@ -1164,14 +1591,29 @@
       },
       "personalityTraits": {
         "personalityType": "Reserved",
-        "strengths": ["Loyal", "Independent"],
-        "weaknesses": ["Overthinking"],
-        "habits": ["Late nights"],
-        "petPeeves": ["Excessive niceness"]
+        "strengths": [
+          "Loyal",
+          "Independent"
+        ],
+        "weaknesses": [
+          "Overthinking"
+        ],
+        "habits": [
+          "Late nights"
+        ],
+        "petPeeves": [
+          "Excessive niceness"
+        ]
       },
       "likesDislikes": {
-        "likes": ["Food", "Simplicity"],
-        "dislikes": ["Complexity", "Fakeness"]
+        "likes": [
+          "Food",
+          "Simplicity"
+        ],
+        "dislikes": [
+          "Complexity",
+          "Fakeness"
+        ]
       },
       "favorites": {
         "musicGenre": "Bhojpuri",
@@ -1187,8 +1629,14 @@
         "quote": "Keep moving forward"
       },
       "lifestyle": {
-        "hobbies": ["Sleeping", "Eating"],
-        "skills": ["Sleeping", "Relaxing"],
+        "hobbies": [
+          "Sleeping",
+          "Eating"
+        ],
+        "skills": [
+          "Sleeping",
+          "Relaxing"
+        ],
         "dreamDestination": "North Korea",
         "biggestFear": "Own height",
         "biggestMotivation": "Personal peace"
@@ -1238,14 +1686,25 @@
       },
       "personalityTraits": {
         "personalityType": "Ambivert",
-        "strengths": ["Strategic", "Thoughtful"],
-        "weaknesses": ["Overthinking", "Procrastination", "Social Anxiety"],
+        "strengths": [
+          "Strategic",
+          "Thoughtful"
+        ],
+        "weaknesses": [
+          "Overthinking",
+          "Procrastination",
+          "Social Anxiety"
+        ],
         "habits": [
           "Late-night thinking",
           "Morning coffee",
           "Music while working"
         ],
-        "petPeeves": ["Loud chewing", "Being late", "Slow internet"]
+        "petPeeves": [
+          "Loud chewing",
+          "Being late",
+          "Slow internet"
+        ]
       },
       "likesDislikes": {
         "likes": [
@@ -1254,7 +1713,12 @@
           "Anime",
           "Coffee shops"
         ],
-        "dislikes": ["Crowds", "Dishonesty", "Hot weather", "Waking up early"]
+        "dislikes": [
+          "Crowds",
+          "Dishonesty",
+          "Hot weather",
+          "Waking up early"
+        ]
       },
       "favorites": {
         "musicGenre": "Alternative Rock",
@@ -1270,8 +1734,15 @@
         "quote": "Life is life"
       },
       "lifestyle": {
-        "hobbies": ["Thinking", "Breathing exercises", "Art"],
-        "skills": ["Strategic thinking", "Problem-solving"],
+        "hobbies": [
+          "Thinking",
+          "Breathing exercises",
+          "Art"
+        ],
+        "skills": [
+          "Strategic thinking",
+          "Problem-solving"
+        ],
         "dreamDestination": "Japan",
         "biggestFear": "Life itself",
         "biggestMotivation": "Creating art"
@@ -1321,10 +1792,24 @@
       },
       "personalityTraits": {
         "personalityType": "Ambivert",
-        "strengths": ["Loyal", "Respectful", "Friendly"],
-        "weaknesses": ["Overthinking", "Easily hurt"],
-        "habits": ["Late night parties", "Phone usage", "Being lazy"],
-        "petPeeves": ["Being late", "Slow internet"]
+        "strengths": [
+          "Loyal",
+          "Respectful",
+          "Friendly"
+        ],
+        "weaknesses": [
+          "Overthinking",
+          "Easily hurt"
+        ],
+        "habits": [
+          "Late night parties",
+          "Phone usage",
+          "Being lazy"
+        ],
+        "petPeeves": [
+          "Being late",
+          "Slow internet"
+        ]
       },
       "likesDislikes": {
         "likes": [
@@ -1333,7 +1818,11 @@
           "Hair clips",
           "Rainy weather"
         ],
-        "dislikes": ["Waking up early", "Hangovers", "Hot weather"]
+        "dislikes": [
+          "Waking up early",
+          "Hangovers",
+          "Hot weather"
+        ]
       },
       "favorites": {
         "musicGenre": "90s Nepali Songs",
@@ -1349,8 +1838,15 @@
         "quote": "Vision so bad that I saw the good in him"
       },
       "lifestyle": {
-        "hobbies": ["Singing", "Photography", "Drawing"],
-        "skills": ["Socializing", "Problem creation"],
+        "hobbies": [
+          "Singing",
+          "Photography",
+          "Drawing"
+        ],
+        "skills": [
+          "Socializing",
+          "Problem creation"
+        ],
         "dreamDestination": "Korea",
         "biggestFear": "Water and loneliness",
         "biggestMotivation": "Helping others"
@@ -1400,9 +1896,24 @@
       },
       "personalityTraits": {
         "personalityType": "Ambivert",
-        "strengths": ["Loyal", "Creative", "Punctual", "Caring", "Supportive"],
-        "weaknesses": ["Overwhelmed", "Overthinking"],
-        "habits": ["Gaming", "Singing", "Thinking", "Hiking", "Traveling"],
+        "strengths": [
+          "Loyal",
+          "Creative",
+          "Punctual",
+          "Caring",
+          "Supportive"
+        ],
+        "weaknesses": [
+          "Overwhelmed",
+          "Overthinking"
+        ],
+        "habits": [
+          "Gaming",
+          "Singing",
+          "Thinking",
+          "Hiking",
+          "Traveling"
+        ],
         "petPeeves": [
           "Loud eating noises",
           "Slow internet",
@@ -1438,8 +1949,17 @@
         "quote": "Be like water my friend - Bruce Lee"
       },
       "lifestyle": {
-        "hobbies": ["Gaming", "Singing", "Reading comics", "Photography"],
-        "skills": ["Cooking", "Problem-solving", "Research"],
+        "hobbies": [
+          "Gaming",
+          "Singing",
+          "Reading comics",
+          "Photography"
+        ],
+        "skills": [
+          "Cooking",
+          "Problem-solving",
+          "Research"
+        ],
         "dreamDestination": "South Korea",
         "biggestFear": "Being left alone",
         "biggestMotivation": "Helping others, podcasts, Bible reading"
@@ -1489,10 +2009,25 @@
       },
       "personalityTraits": {
         "personalityType": "INTJ Ambivert",
-        "strengths": ["Loyal", "Creative", "Focused", "Calm"],
-        "weaknesses": ["Overthinking", "Introverted"],
-        "habits": ["Late night thinking", "Music while working"],
-        "petPeeves": ["Slow internet", "Being late", "Tardiness"]
+        "strengths": [
+          "Loyal",
+          "Creative",
+          "Focused",
+          "Calm"
+        ],
+        "weaknesses": [
+          "Overthinking",
+          "Introverted"
+        ],
+        "habits": [
+          "Late night thinking",
+          "Music while working"
+        ],
+        "petPeeves": [
+          "Slow internet",
+          "Being late",
+          "Tardiness"
+        ]
       },
       "likesDislikes": {
         "likes": [
@@ -1501,7 +2036,11 @@
           "Quiet environments",
           "Deep conversations"
         ],
-        "dislikes": ["Dishonesty", "Crowds", "Betrayal"]
+        "dislikes": [
+          "Dishonesty",
+          "Crowds",
+          "Betrayal"
+        ]
       },
       "favorites": {
         "musicGenre": "Lo-fi, Indie Pop",
@@ -1517,7 +2056,13 @@
         "quote": "Silence speaks louder than words"
       },
       "lifestyle": {
-        "hobbies": ["Photography", "Gaming", "Dancing", "Singing", "Writing"],
+        "hobbies": [
+          "Photography",
+          "Gaming",
+          "Dancing",
+          "Singing",
+          "Writing"
+        ],
         "skills": [
           "Cooking",
           "Problem-solving",
